@@ -1,5 +1,6 @@
 INCLUDES =						\
 	-I$(top_srcdir)					\
+	-I$(top_srcdir)/intl				\
 	-DGTK_DISABLE_DEPRECATED			\
 	-DGEXIF_LOCALEDIR="\"$(datadir)/locale\""	\
 	$(GEXIF_CFLAGS)
