@@ -321,8 +321,8 @@ gexif_main_new (void)
 {
 	GExifMain *m;
 	GtkWidget *browser, *vbox, *w;
-	GtkItemFactory *gif;
 	GtkAccelGroup *ag;
+	GtkItemFactory *gif;
 
 	m = g_object_new (GEXIF_TYPE_MAIN, NULL);
 	gtk_window_set_title (GTK_WINDOW (m), PACKAGE);
@@ -335,15 +335,14 @@ gexif_main_new (void)
 	gtk_container_add (GTK_CONTAINER (m), vbox);
 
 	ag = gtk_accel_group_new ();
+	gtk_window_add_accel_group (GTK_WINDOW (m), ag);
 	gif = gtk_item_factory_new (GTK_TYPE_MENU_BAR, "<main>", ag);
 	g_object_set_data_full (G_OBJECT (m), "<main>", gif,
 				(GDestroyNotify) g_object_unref);
-	gtk_window_add_accel_group (GTK_WINDOW (m), ag);
 	gtk_item_factory_create_items (gif, G_N_ELEMENTS (mi), mi, m);
 	w = gtk_item_factory_get_widget (gif, "<main>");
 	gtk_widget_show (w);
 	gtk_box_pack_start (GTK_BOX (vbox), w, FALSE, FALSE, 0);
-	g_object_unref (G_OBJECT (gif));
 
 	browser = gtk_exif_browser_new ();
 	gtk_widget_show (browser);
