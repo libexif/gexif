@@ -69,12 +69,6 @@ struct _GExifMainPrivate
 #define PARENT_TYPE GTK_TYPE_WINDOW
 static GtkWindowClass *parent_class;
 
-enum {
-	LAST_SIGNAL
-};
-
-static guint signals[LAST_SIGNAL] = {0};
-
 static void
 gexif_main_destroy (GtkObject *object)
 {
@@ -111,8 +105,6 @@ gexif_main_class_init (GExifMainClass *klass)
 	object_class = GTK_OBJECT_CLASS (klass);
 	object_class->destroy  = gexif_main_destroy;
 	object_class->finalize = gexif_main_finalize;
-
-	gtk_object_class_add_signals (object_class, signals, LAST_SIGNAL);
 
 	parent_class = gtk_type_class (PARENT_TYPE);
 }
