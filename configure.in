@@ -1,36 +1,67 @@
-AC_PREREQ(2.50)
-AC_INIT(gexif/gexif.c)
-AM_CONFIG_HEADER(config.h)
-AM_INIT_AUTOMAKE(gexif, 0.5)
-AM_MAINTAINER_MODE
+AC_PREREQ(2.59)
+AC_INIT([GTK EXIF viewer/editor],[0.5],[libexif-devel@lists.sourceforge.net],[gexif])
+AC_CONFIG_SRCDIR([gexif/gexif.c])
+AC_CONFIG_HEADERS([config.h])
+AM_INIT_AUTOMAKE([gnu 1.8 dist-bzip2])
+GP_CONFIG_MSG([Source code location],[${srcdir}])
 
+AC_PROG_CC
+AM_PROG_CC_STDC
+AC_HEADER_STDC
 AM_PROG_LIBTOOL
+GP_PKG_CONFIG
 
-dnl ---------------------------------------------------------------------------
-dnl i18n support
-dnl ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# i18n support
+# ---------------------------------------------------------------------------
+GP_GETTEXT_HACK([],[Lutz Müller and others])
 ALL_LINGUAS="de es fr"
-AM_GNU_GETTEXT
+AM_GNU_GETTEXT_VERSION([0.14.1])
+AM_GNU_GETTEXT([external])
+AM_PO_SUBDIRS()
+AM_ICONV()
+GP_GETTEXT_FLAGS()
 
-dnl ---------------------------------------------------------------------------
-dnl libexif
-dnl ---------------------------------------------------------------------------
-PKG_CHECK_MODULES(LIBEXIF, libexif)
-AC_SUBST(LIBEXIF_LIBS)
-AC_SUBST(LIBEXIF_CFLAGS)
+dnl We cannot use AC_DEFINE_UNQUOTED() for these definitions, as
+dnl we require make to do insert the proper $(datadir) value
+AC_SUBST([localedir],["\$(datadir)/locale"])
+AM_CFLAGS="$AM_CFLAGS -DLOCALEDIR=\\\"${localedir}\\\""
 
-dnl ---------------------------------------------------------------------------
-dnl libexif-gtk
-dnl ---------------------------------------------------------------------------
-PKG_CHECK_MODULES(GEXIF, gtk+-2.0 libexif-gtk >= 0.3.3)
-AC_SUBST(GEXIF_LIBS)
-AC_SUBST(GEXIF_CFLAGS)
 
-CFLAGS="$CFLAGS -Wall -Wchar-subscripts -Wmissing-declarations -Wmissing-prototypes -Wnested-externs -Wpointer-arith"
-AC_SUBST(CFLAGS)
+# ---------------------------------------------------------------------------
+# libraries needed
+# ---------------------------------------------------------------------------
+GP_CHECK_LIBRARY([LIBEXIF], [libexif])dnl
+GP_CHECK_LIBRARY([LIBEXIF_GTK], [libexif-gtk],[>= 0.3.3])dnl
 
-AC_OUTPUT([
+PKG_CHECK_MODULES([GTK], [gtk+-2.0])dnl
+AC_SUBST([GTK_LIBS])
+AC_SUBST([GTK_CFLAGS])
+
+
+# ---------------------------------------------------------------------------
+# Warnings: If we have GCC, be paranoid.
+# ---------------------------------------------------------------------------
+if test "x$GCC" = "xyes"; then
+    AM_CFLAGS="$AM_CFLAGS -Wall -Wchar-subscripts -Wmissing-declarations -Wmissing-prototypes -Wnested-externs -Wpointer-arith"
+    AM_LDFLAGS="$AM_LDFLAGS -g -Wall"
+fi
+
+AC_SUBST([AM_CFLAGS])dnl
+AC_SUBST([AM_LDFLAGS])dnl
+
+
+# ---------------------------------------------------------------------------
+# Output files
+# ---------------------------------------------------------------------------
+AC_CONFIG_FILES([
+  po/Makefile.in
   Makefile
+  m4/Makefile
   libjpeg/Makefile
   gexif/Makefile
 ])
+AC_OUTPUT()dnl
+
+GP_CONFIG_OUTPUT()dnl

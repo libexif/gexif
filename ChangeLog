@@ -1,3 +1,9 @@
+2005-03-24  Hans Ulrich Niedermann <gp@n-dimensional.de>
+
+	* autogen.sh, configure.in, */Makefile.am, ...: Updated build system.
+	  - doesn't require gettextize any more (using autopoint now)
+	  - uses all the built-in magic from autoreconf
+
 2003-05-01  Lutz Mueller <lutz@users.sourceforge.net>
 
 	Patch by Gernot Jander <gernot@bigpond.com>:

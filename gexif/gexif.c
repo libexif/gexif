@@ -51,7 +51,7 @@ main (int argc, char **argv)
 
 	gtk_set_locale ();
 	bind_textdomain_codeset (PACKAGE, "UTF-8");
-	bindtextdomain (PACKAGE, GEXIF_LOCALEDIR);
+	bindtextdomain (PACKAGE, LOCALEDIR);
 	textdomain (PACKAGE);
 
 	gtk_init (&argc, &argv);

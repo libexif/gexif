@@ -1,14 +1,22 @@
-INCLUDES =						\
-	-I$(top_srcdir)					\
-	-I$(top_srcdir)/intl				\
-	-DGTK_DISABLE_DEPRECATED			\
-	-DGEXIF_LOCALEDIR="\"$(datadir)/locale\""	\
-	$(GEXIF_CFLAGS)
-
 bin_PROGRAMS = gexif
 
 gexif_SOURCES =					\
 	gexif.c					\
 	gexif-main.c gexif-main.h		\
 	gexif-thumbnail.c gexif-thumbnail.h
-gexif_LDADD = $(top_builddir)/libjpeg/libjpeg.la $(GEXIF_LIBS)
+
+# We cannot define -DGTK_DISABLE_DEPRECATED here
+# as long as we're still using GtkItemFactory.
+
+gexif_CFLAGS = \
+	$(AM_CFLAGS) $(CFLAGS)				\
+	-I$(top_srcdir)					\
+	$(LIBEXIF_CFLAGS)				\
+	$(LIBEXIF_GTK_CFLAGS)				\
+	$(GTK_CFLAGS)
+
+gexif_LDADD = \
+	$(top_builddir)/libjpeg/libjpeg.la 		\
+	$(LIBEXIF_LIBS)					\
+	$(LIBEXIF_GTK_LIBS)				\
+	$(GTK_LIBS)
