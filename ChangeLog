@@ -1,3 +1,7 @@
 2002-07-23  Lutz Müller <lutz@users.sourceforge.net>
 
+	* configure.in: Version 0.4
+
+2002-07-23  Lutz Müller <lutz@users.sourceforge.net>
+
 	gtk+-2.0 port.
