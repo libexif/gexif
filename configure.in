@@ -26,13 +26,11 @@ PKG_CHECK_MODULES(GEXIF, gtk+-2.0 libexif-gtk >= 0.2.0)
 AC_SUBST(GEXIF_LIBS)
 AC_SUBST(GEXIF_CFLAGS)
 
-CFLAGS="$CFLAGS -Wall -Wchar-subscripts -Wmissing-declarations -Wmissing-prototypes -Wnested-externs -Wpointer-arith -Werror"
+CFLAGS="$CFLAGS -Wall -Wchar-subscripts -Wmissing-declarations -Wmissing-prototypes -Wnested-externs -Wpointer-arith"
 AC_SUBST(CFLAGS)
 
 AC_OUTPUT([
   Makefile
   libjpeg/Makefile
   gexif/Makefile
-  intl/Makefile
-  po/Makefile.in
 ])
