@@ -157,7 +157,7 @@ gexif_main_load_data (GExifMain *m, JPEGData *jdata)
 	exif_data_unref (edata);
 }
 
-static void
+void
 gexif_main_load_file (GExifMain *m, const gchar *path)
 {
 	JPEGData *data;

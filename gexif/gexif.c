@@ -36,6 +36,8 @@ main (int argc, char **argv)
 	gtk_widget_show (window);
 	gtk_signal_connect (GTK_OBJECT (window), "destroy",
 			    GTK_SIGNAL_FUNC (gtk_main_quit), NULL);
+	if (argc > 1)
+		gexif_main_load_file (GEXIF_MAIN (window), argv[1]);
 
 	gtk_main ();
 

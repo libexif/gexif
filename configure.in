@@ -21,7 +21,7 @@ AC_SUBST(LIBEXIF_CFLAGS)
 dnl ---------------------------------------------------------------------------
 dnl libexif-gtk
 dnl ---------------------------------------------------------------------------
-PKG_CHECK_MODULES(GEXIF, libexif-gtk)
+PKG_CHECK_MODULES(GEXIF, libexif-gtk >= 0.2.0)
 AC_SUBST(GEXIF_LIBS)
 AC_SUBST(GEXIF_CFLAGS)
 
