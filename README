@@ -1,0 +1,14 @@
+         gexif
+	 =====
+
+WHAT IT IS
+==========
+
+gexif is a GUI which shows the EXIF tags contained in many JPG and TIFF files.
+
+
+REQUIREMENTS
+============
+
+gexif requires libexif-gtk, and thus libexif and GTK+.
+
