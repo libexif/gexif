@@ -1,0 +1,686 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: gexif\n"
+"POT-Creation-Date: 2002-07-23 09:06+0200\n"
+"PO-Revision-Date: 2002-03-21 16:33GMT\n"
+"Last-Translator: Lutz Müller <lutz@users.sourceforge.net>\n"
+"Language-Team: Deutsch <de@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: gexif/gexif-main.c:239
+msgid "Save As..."
+msgstr "Speichere Unter..."
+
+#: gexif/gexif-main.c:270
+msgid "Open..."
+msgstr ""
+
+#~ msgid "None"
+#~ msgstr "Kein"
+
+#~ msgid "Best"
+#~ msgstr "Beste"
+
+#~ msgid "Initializing camera..."
+#~ msgstr "Initialisiere Kamera..."
+
+#~ msgid "Could not initialize camera."
+#~ msgstr "Konnte Kamera nicht initialisieren."
+
+#~ msgid "Could not get abilities of model '%s'."
+#~ msgstr "Konnte die Fähigkeiten des Modells »%s« nicht abfragen."
+
+#~ msgid "Detecting cameras..."
+#~ msgstr "Erkenne Kameras..."
+
+#~ msgid "No cameras detected."
+#~ msgstr "Keine Kameras gefunden"
+
+#~ msgid "Could not detect any cameras."
+#~ msgstr "Konnte keine Kameras finden."
+
+#~ msgid "Select Camera"
+#~ msgstr "Wähle Kamera aus"
+
+#~ msgid "Model:"
+#~ msgstr "Modell:"
+
+#~ msgid "Detect"
+#~ msgstr "Erkennung"
+
+#, fuzzy
+#~ msgid "Detect USB camera"
+#~ msgstr "Erkenne Kameras..."
+
+#~ msgid "Port:"
+#~ msgstr "Anschluss:"
+
+#~ msgid "Speed:"
+#~ msgstr "Geschwindigkeit:"
+
+# !!! kein besonders reines Deutsch... !!!
+#~ msgid "Allow multiple frontends"
+#~ msgstr "Erlaube mehrere Frontends"
+
+#~ msgid "Enhanced"
+#~ msgstr "Erweitert"
+
+#~ msgid "Could not get number of supported camera models"
+#~ msgstr "Konnte die Anzahl der unterstützten Kameras nicht abfragen"
+
+#~ msgid "Could not get number of ports."
+#~ msgstr "Konnte die Anzahl der Anschlüsse nicht abfragen."
+
+#~ msgid "Applying configuration..."
+#~ msgstr "Setze Konfiguration..."
+
+#~ msgid "Could not apply configuration."
+#~ msgstr "Konnte die Konfiguration nicht setzen."
+
+#~ msgid "No additional information available. (1)"
+#~ msgstr "Keine zusätzlichen Informationen verfügbar. (1)"
+
+#~ msgid "General Settings"
+#~ msgstr "Allgemeine Einstellungen"
+
+#~ msgid "Could not execute command."
+#~ msgstr "Konnte den Befehl nicht ausführen."
+
+#~ msgid "No additional information available. (2)"
+#~ msgstr "Keine zusätzlichen Informationen verfügbar. (2)"
+
+#~ msgid "No additional information available. (3)"
+#~ msgstr "Keine zusätzlichen Informationen verfügbar. (3)"
+
+#~ msgid "No additional information available. (4)"
+#~ msgstr "Keine zusätzlichen Informationen verfügbar. (4)"
+
+#~ msgid "No additional information available. (5)"
+#~ msgstr "Keine zusätzlichen Informationen verfügbar. (5)"
+
+#~ msgid "No additional information available. (6)"
+#~ msgstr "Keine zusätzlichen Informationen verfügbar. (6)"
+
+#~ msgid "Getting configuration..."
+#~ msgstr "Frage Konfiguration ab..."
+
+#~ msgid "Could not get configuration."
+#~ msgstr "Konnte die Konfiguration nicht abfragen."
+
+#~ msgid "Could not open '%s'!"
+#~ msgstr "Konnte »%s« nicht öffnen!"
+
+#~ msgid "Type of messages to log:"
+#~ msgstr "Art der zu loggenden Meldungen:"
+
+#~ msgid "Error"
+#~ msgstr "Fehler"
+
+#~ msgid "Verbose"
+#~ msgstr "Gesprächig"
+
+#~ msgid "Debug"
+#~ msgstr "Debug"
+
+#~ msgid "Data"
+#~ msgstr "Daten"
+
+#~ msgid "Deleting all files in '%s'..."
+#~ msgstr "Lösche alle Dateien in »%s«..."
+
+#~ msgid "Could not delete all files in '%s'."
+#~ msgstr "Konnte nicht alle Dateien in »%s« löschen."
+
+#~ msgid "Deleting file '%s' from folder '%s'..."
+#~ msgstr "Lösche Datei »%s« aus Verzeichnis »%s«..."
+
+#~ msgid "Could not delete file '%s' in folder '%s'."
+#~ msgstr "Konnte Datei »%s« nicht aus Verzeichnis »%s« löschen."
+
+#~ msgid "Do you really want to delete the following file?"
+#~ msgstr "Möchten Sie die folgende Datei wirklich löschen?"
+
+#~ msgid "Do you really want to delete the following %i files?"
+#~ msgstr "Möchten Sie die folgenden %i Dateien wirklich löschen?"
+
+#, fuzzy
+#~ msgid "'%s' in folder '%s'"
+#~ msgstr "Lade »%s« in das Verzeichnis »%s« hoch..."
+
+#, fuzzy
+#~ msgid "All files in folder '%s'"
+#~ msgstr "Hole Dateiliste des Verzeichnisses »%s«..."
+
+#~ msgid "More"
+#~ msgstr "Mehr"
+
+#, fuzzy
+#~ msgid "Getting EXIF information for file '%s' in folder '%s'..."
+#~ msgstr "Hole Informationen über Datei »%s« im Verzeichnis »%s«..."
+
+#, fuzzy
+#~ msgid "Could not get exif information for '%s' in folder '%s'"
+#~ msgstr ""
+#~ "Konnte keine Informationen über Datei »%s« im Verzeichnis »%s« bekommen."
+
+#, fuzzy
+#~ msgid "Could not interpret EXIF data."
+#~ msgstr "Konnte Kamera nicht initialisieren."
+
+#~ msgid "Captures images from digital camera"
+#~ msgstr "Aufnahme von digitaler Kamera machen"
+
+#~ msgid "<Toolbox>/File/Acquire/Capture from Camera..."
+#~ msgstr "<Toolbox>/Datei/Acquire/Aufnahme von Kamera machen..."
+
+#~ msgid "Loads files from digital cameras"
+#~ msgstr "Lädt Dateien von digitalen Kameras"
+
+#~ msgid "<Toolbox>/File/Acquire/Load from Camera..."
+#~ msgstr "<Toolbox>/Datei/Acquire/Lade von Kamera..."
+
+#~ msgid "Downloading '%s' from '%s'..."
+#~ msgstr "Lade »%s« aus »%s« herunter..."
+
+#~ msgid "Could not download file '%s' from folder '%s'."
+#~ msgstr "Konnte Datei »%s« nicht aus Verzeichnis »%s« holen."
+
+#, fuzzy
+#~ msgid "Setting information for file '%s' in '%s'..."
+#~ msgstr "Hole Informationen über Datei »%s« in »%s«..."
+
+#, fuzzy
+#~ msgid "Could not set file information for '%s' in folder '%s'"
+#~ msgstr ""
+#~ "Konnte keine Informationen über Datei »%s« im Verzeichnis »%s« bekommen."
+
+#~ msgid "Getting information about file '%s' in folder '%s'..."
+#~ msgstr "Hole Informationen über Datei »%s« im Verzeichnis »%s«..."
+
+#, fuzzy
+#~ msgid "Could not get information about file '%s' in '%s' in folder '%s'."
+#~ msgstr ""
+#~ "Konnte keine Informationen über Datei »%s« im Verzeichnis »%s« bekommen."
+
+#~ msgid "File"
+#~ msgstr "Datei"
+
+#~ msgid "Name:"
+#~ msgstr "Name:"
+
+#~ msgid "Mime type:"
+#~ msgstr "MIME-Typ:"
+
+#~ msgid "Last modified:"
+#~ msgstr "Zuletzt modifiziert:"
+
+#~ msgid "Size:"
+#~ msgstr "Größe:"
+
+#~ msgid "%li bytes"
+#~ msgstr "%li Bytes"
+
+#~ msgid "Permissions:"
+#~ msgstr "Zugriffsrechte:"
+
+#~ msgid "Read"
+#~ msgstr "Lesen"
+
+#~ msgid "Delete"
+#~ msgstr "Löschen"
+
+#~ msgid "Preview"
+#~ msgstr "Vorschau"
+
+#~ msgid "Audio"
+#~ msgstr "Audio"
+
+#~ msgid "Mime type: "
+#~ msgstr "MIME-Typ: "
+
+#, fuzzy
+#~ msgid "Downloading thumbnail of '%s' from folder '%s'..."
+#~ msgstr "Hole Vorschaubild der Datei »%s« im Verzeichnis »%s«..."
+
+#, fuzzy
+#~ msgid "Changing name of '%s' to '%s'..."
+#~ msgstr "Lege Verzeichnis »%s« im Verzeichnis »%s« an..."
+
+#, fuzzy
+#~ msgid "Could not change the name of '%s' to '%s'."
+#~ msgstr "Konnte Datei »%s« nicht aus Verzeichnis »%s« löschen."
+
+#~ msgid "Listing files in folder '%s'..."
+#~ msgstr "Hole Dateiliste des Verzeichnisses »%s«..."
+
+#~ msgid "Could not get file list for folder '%s'"
+#~ msgstr "Fehler beim Herunterladen der Dateiliste des Verzeichnisses »%s«"
+
+#~ msgid ""
+#~ "%s %s\n"
+#~ "\n"
+#~ "gtKam was written by:\n"
+#~ " - Scott Fritzinger <scottf@unr.edu>,\n"
+#~ " - Lutz Mueller <urc8@rz.uni-karlsruhe.de>,\n"
+#~ " - and many others.\n"
+#~ "\n"
+#~ "gtKam uses libgphoto2, a library to access a\n"
+#~ "multitude of digital cameras. More \n"
+#~ "information is available at\n"
+#~ "http://www.gphoto.net.\n"
+#~ "\n"
+#~ "Enjoy the wonderful world of gphoto!"
+#~ msgstr ""
+#~ "%s %s\n"
+#~ "\n"
+#~ "gtKam wurde geschrieben von:\n"
+#~ " - Scott Fritzinger <scottf@unr.edu>,\n"
+#~ " - Lutz Müller <urc8@rz.uni-karlsruhe.de>\n"
+#~ "und vielen anderen.\n"
+#~ "\n"
+#~ "gtKam verwendet libgphoto2, eine Bibliothek,\n"
+#~ "um viele digitale Kameras anzusprechen. Mehr\n"
+#~ "Informationen sind unter\n"
+#~ "http://www.gphoto.net erhältlich.\n"
+#~ "\n"
+#~ "Viel Spaß mit gphoto!"
+
+#~ msgid "_Help"
+#~ msgstr "_Hilfe"
+
+#~ msgid "_Debug..."
+#~ msgstr "_Debug..."
+
+#~ msgid "_About..."
+#~ msgstr "_Über..."
+
+#~ msgid "Index Settings"
+#~ msgstr "Indexeinstellungen"
+
+#~ msgid "View Thumbnails"
+#~ msgstr "Zeige Vorschaubilder"
+
+#~ msgid "Creating folder '%s' in folder '%s'..."
+#~ msgstr "Lege Verzeichnis »%s« im Verzeichnis »%s« an..."
+
+#~ msgid "Could not create folder '%s' in folder '%s'."
+#~ msgstr "Konnte Verzeichnis »%s« nicht im Verzeichnis »%s« anlegen."
+
+#~ msgid ""
+#~ "Please choose a name for the directory that should be created in '%s':"
+#~ msgstr ""
+#~ "Bitte wählen Sie einen Namen für das Verzeichnis, welches in »%s« "
+#~ "angelegt werden soll:"
+
+#~ msgid "New directory"
+#~ msgstr "Neues Verzeichnis"
+
+#, fuzzy
+#~ msgid "Could not find and io-driver for port '%s' ('%s')."
+#~ msgstr ""
+#~ "Konnte Verzeichnisliste des Verzeichnisses »%s« nicht herunterladen."
+
+#~ msgid "Capturing image..."
+#~ msgstr "Mache Aufnahme..."
+
+#~ msgid "Could not capture image."
+#~ msgstr "Konnte keine Aufnahme machen."
+
+#~ msgid "Capture"
+#~ msgstr "Aufnahme machen"
+
+#~ msgid "0 degrees"
+#~ msgstr "0 Grad"
+
+#~ msgid "Don't rotate thumbnail"
+#~ msgstr "Vorschaubild nicht rotieren"
+
+#~ msgid "-90 degrees"
+#~ msgstr "-90 Grad"
+
+#~ msgid "Rotate thumbnail by -90 degrees"
+#~ msgstr "Vorschaubild um -90° rotieren"
+
+#~ msgid "+90 degrees"
+#~ msgstr "+90 Grad"
+
+#, fuzzy
+#~ msgid "Rotate thumbnail by 90 degrees"
+#~ msgstr "Vorschaubild um 90° rotieren"
+
+#~ msgid "180 degrees"
+#~ msgstr "180 Grad"
+
+#~ msgid "Rotate thumbnail by 180 degrees"
+#~ msgstr "Vorschaubild um 180° rotieren"
+
+#~ msgid "'%s' already exists."
+#~ msgstr "»%s« existiert bereits."
+
+#~ msgid "Could not save file to '%s'."
+#~ msgstr "Konnte Datei nicht unter »%s« speichern."
+
+#~ msgid "Could not get '%s' from folder '%s'."
+#~ msgstr "Konnte Datei »%s« nicht aus Verzeichnis »%s« holen."
+
+#~ msgid "Downloading %i files..."
+#~ msgstr "Lade %i Dateien herunter..."
+
+#~ msgid "What to save:"
+#~ msgstr "Was soll gespeichert werden:"
+
+#~ msgid "Save photos"
+#~ msgstr "Speichere Photos"
+
+#~ msgid "Photos will be saved if this is checked"
+#~ msgstr "Photos werden gespeichert, wenn dies angekreuzt ist."
+
+#~ msgid "Save raw data"
+#~ msgstr "Speichere Originaldaten"
+
+#~ msgid "Raw data will be saved if this is checked"
+#~ msgstr "Originaldaten werden gespeichert, wenn dies angekreuzt ist"
+
+#~ msgid "Save audio data"
+#~ msgstr "Speichere Audiodaten"
+
+#~ msgid "Audio data will be saved if this is checked"
+#~ msgstr "Audiodaten werden gespeichert, wenn dies angekreuzt ist"
+
+#~ msgid "Save thumbnails"
+#~ msgstr "Speichere Vorschaubilder"
+
+#~ msgid "Thumbnails will be saved if this is checked"
+#~ msgstr "Vorschaubilder werden gespeichert, wenn dies angekreuzt ist"
+
+#~ msgid "Save EXIF data"
+#~ msgstr "Speichere EXIF-Daten"
+
+#~ msgid "EXIF data will be saved if this is checked"
+#~ msgstr "EXIF-Daten werden gespeichert, wenn dies angekreuzt ist"
+
+#~ msgid "Open image(s) with: "
+#~ msgstr "Öffne Bild(er) mit: "
+
+#~ msgid ""
+#~ "Type in the name of the program you want to run, leave blank for none"
+#~ msgstr ""
+#~ "Name des Programmes, welches gestartet werden soll (leer: kein Programm "
+#~ "starten)"
+
+#, fuzzy
+#~ msgid "Use filename(s) provided by the camera"
+#~ msgstr "Verwende die Dateinamen der Kamera"
+
+#~ msgid "Choose whether to use the filename provided by the camera"
+#~ msgstr "Auswählen, ob die Dateinamen der Kamera verwendet werden sollen"
+
+#~ msgid "Filename prefix: "
+#~ msgstr "Dateinamen-Präfix"
+
+#~ msgid "Save '%s'..."
+#~ msgstr "Speichere »%s«..."
+
+#~ msgid "Save photos..."
+#~ msgstr "Speichere Photos..."
+
+#, fuzzy
+#~ msgid "Listing folders in '%s'..."
+#~ msgstr "Hole Dateiliste des Verzeichnisses »%s«..."
+
+#, fuzzy
+#~ msgid "Could not list folders in '%s'."
+#~ msgstr "Konnte nicht alle Dateien in »%s« löschen."
+
+#~ msgid "Could not open '%s'."
+#~ msgstr "Konnte »%s« nicht öffnen."
+
+#, fuzzy
+#~ msgid "Uploading '%s' into folder '%s'..."
+#~ msgstr "Konnte Datei »%s« nicht in das Verzeichnis »%s« hochladen."
+
+#, fuzzy
+#~ msgid "Could not upload '%s' into '%s'."
+#~ msgstr "Konnte Datei »%s« nicht in das Verzeichnis »%s« hochladen."
+
+#, fuzzy
+#~ msgid "Upload into '%s'..."
+#~ msgstr "Datei _hochladen..."
+
+#, fuzzy
+#~ msgid "Removing directory '%s'..."
+#~ msgstr "Entferne »%s« aus »%s«..."
+
+#, fuzzy
+#~ msgid "Could not remove directory '%s'."
+#~ msgstr "Konnte Datei »%s« nicht aus Verzeichnis »%s« löschen."
+
+#~ msgid "Getting information about the camera..."
+#~ msgstr "Frage Informationen über die Kamera ab..."
+
+#~ msgid "Getting information about the driver..."
+#~ msgstr "Frage Treiberinformationen ab..."
+
+#~ msgid "Getting manual..."
+#~ msgstr "Hole Kameraanleitung..."
+
+#~ msgid "Could not retrieve information."
+#~ msgstr "Konnte Informationen nicht abfragen."
+
+#~ msgid "Could not capture."
+#~ msgstr "Konnte keine Aufnahme machen."
+
+#, fuzzy
+#~ msgid "Folder"
+#~ msgstr "_Verzeichnis"
+
+#, fuzzy
+#~ msgid "Loading cameras..."
+#~ msgstr "Erkenne Kameras..."
+
+#~ msgid ""
+#~ "Could not display '%s'. Either the image type ('%s') is not supported by "
+#~ "gtk or the file itself is corrupt."
+#~ msgstr ""
+#~ "Konnte »%s« nicht anzeigen. Entweder wird der Bildtyp (»%s«) nicht von "
+#~ "GTK unterstützt oder die Datei selbst ist nicht in Ordnung."
+
+#, fuzzy
+#~ msgid "Couldn't find pixmap file: %s"
+#~ msgstr "Konnte Datei »%s« nicht holen."
+
+#, fuzzy
+#~ msgid "Error loading pixmap file: %s"
+#~ msgstr "Lade %i Dateien herunter..."
+
+#~ msgid "Cancel"
+#~ msgstr "Abbrechen"
+
+#~ msgid "Add"
+#~ msgstr "Hinzufügen"
+
+#~ msgid "Ok"
+#~ msgstr "Ok"
+
+#~ msgid "Apply"
+#~ msgstr "Anwenden"
+
+#~ msgid "Filename"
+#~ msgstr "Dateiname"
+
+#~ msgid "Getting file '%s' from folder '%s'..."
+#~ msgstr "Hole Datei »%s« aus Verzeichnis »%s«..."
+
+#~ msgid "Could not get file '%s'."
+#~ msgstr "Konnte Datei »%s« nicht holen."
+
+#~ msgid "Getting list of files in folder '%s'..."
+#~ msgstr "Hole Dateiliste des Verzeichnisses »%s«..."
+
+#~ msgid "Could not get file list for folder '%s'."
+#~ msgstr "Konnte Dateiliste des Verzeichnisses »%s« nicht holen."
+
+#~ msgid "Close"
+#~ msgstr "Schließen"
+
+#~ msgid "Background"
+#~ msgstr "Hintergrund"
+
+#~ msgid "Could not set file information for '%s'"
+#~ msgstr "Konnte Dateiinformationen für »%s« nicht setzen"
+
+#~ msgid "Reset"
+#~ msgstr "Zurücksetzen"
+
+#~ msgid "Could not get preview of file '%s' in folder '%s'"
+#~ msgstr ""
+#~ "Konnte Vorschaubild der Datei »%s« im Verzeichnis »%s« nicht herunterladen"
+
+#~ msgid "Info"
+#~ msgstr "Info"
+
+#~ msgid "Exif"
+#~ msgstr "Exif"
+
+#~ msgid "Save"
+#~ msgstr "Speichern"
+
+#~ msgid "Getting preview of file '%s' in folder '%s'..."
+#~ msgstr "Hole Vorschau der Datei »%s« im Verzeichnis »%s«..."
+
+#~ msgid "Could not get preview of file '%s' in folder '%s'."
+#~ msgstr "Konnte Vorschau der Datei »%s« im Verzeichnis »%s« nicht holen."
+
+#~ msgid "_File"
+#~ msgstr "_Datei"
+
+#~ msgid "_Save Selected Photos..."
+#~ msgstr "_Speichere ausgewählte Photos..."
+
+#~ msgid "_Delete Photos"
+#~ msgstr "_Lösche Photos"
+
+#~ msgid "_Selected"
+#~ msgstr "_Ausgewählte"
+
+#~ msgid "_All"
+#~ msgstr "_Alle"
+
+#~ msgid "_Exit"
+#~ msgstr "_Beenden"
+
+#~ msgid "_Select"
+#~ msgstr "_Auswählen"
+
+#~ msgid "_Inverse"
+#~ msgstr "_Umkehren"
+
+#~ msgid "_None"
+#~ msgstr "_Keine"
+
+#~ msgid "_Camera"
+#~ msgstr "_Kamera"
+
+#, fuzzy
+#~ msgid "_Add Camera..."
+#~ msgstr "_Wähle Kamera..."
+
+#, fuzzy
+#~ msgid "Manual"
+#~ msgstr "_Anleitung"
+
+#, fuzzy
+#~ msgid "About the driver"
+#~ msgstr "_Über den Treiber..."
+
+#~ msgid "Save selected photos..."
+#~ msgstr "Speichere ausgewählte Photos..."
+
+#~ msgid "Delete selected photos"
+#~ msgstr "Lösche ausgewählte Photos"
+
+#~ msgid "Exit"
+#~ msgstr "Beenden"
+
+#~ msgid "100%"
+#~ msgstr "100%"
+
+#~ msgid "Don't enlarge thumbnail"
+#~ msgstr "Vorschaubild nicht vergrößern"
+
+#~ msgid "150%"
+#~ msgstr "150%"
+
+#~ msgid "Enlarge thumbnail by 50%"
+#~ msgstr "Vorschaubild um 50% vergrößern"
+
+#~ msgid "200%"
+#~ msgstr "200%"
+
+#~ msgid "Enlarge thumbnail by 100%"
+#~ msgstr "Vorschaubild um 100% vergrößern"
+
+#~ msgid "250%"
+#~ msgstr "250%"
+
+#~ msgid "Enlarge thumbnail by 150%"
+#~ msgstr "Vorschaubild um 150% vergrößern"
+
+#~ msgid "Configure"
+#~ msgstr "Konfigurieren"
+
+#~ msgid "Could not remove '%s' from '%s'"
+#~ msgstr "Konnte Datei »%s« nicht aus Verzeichnis »%s« löschen"
+
+#~ msgid "Make"
+#~ msgstr "Machen"
+
+#~ msgid "Remove"
+#~ msgstr "Löschen"
+
+#~ msgid "Do you really want to delete ALL files in '%s'?"
+#~ msgstr "Möchten Sie wirklich ALLE Dateien in »%s« löschen?"
+
+#~ msgid "Could not retrieve manual."
+#~ msgstr "Konnte die Kameraanleitung nicht abfragen."
+
+#~ msgid "Could not get information about the driver."
+#~ msgstr "Konnte die Treiberinformationen nicht abfragen."
+
+#~ msgid "Removing folder '%s' from folder '%s'..."
+#~ msgstr "Entferne Verzeichnis »%s« aus Verzeichnis »%s«..."
+
+#~ msgid "Upload..."
+#~ msgstr "Hochladen..."
+
+#~ msgid "_Create..."
+#~ msgstr "_Anlegen..."
+
+#~ msgid "_Remove..."
+#~ msgstr "_Löschen..."
+
+#~ msgid "Ca_pture..."
+#~ msgstr "_Bild aufnehmen..."
+
+#~ msgid "_Configure..."
+#~ msgstr "_Konfigurieren..."
+
+#~ msgid "_Information"
+#~ msgstr "_Information"
+
+#~ msgid "Configure camera..."
+#~ msgstr "Konfiguriere Kamera..."
+
+#~ msgid "No camera set"
+#~ msgstr "Keine Kamera ausgewählt"
+
+#~ msgid "Listing contents of folder '%s'..."
+#~ msgstr "Liste Inhalt des Verzeichnisses »%s«..."
+
+#~ msgid "Could not retrieve file list for folder '%s'."
+#~ msgstr "Konnte Dateiliste des Verzeichnisses »%s« nicht herunterladen."
+
+#~ msgid "Getting list of folders in '%s'..."
+#~ msgstr "Hole Verzeichnisliste in »%s«..."

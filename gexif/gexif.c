@@ -46,7 +46,7 @@
 int
 main (int argc, char **argv)
 {
-	GtkWidget *window;
+	GtkWidget *w;
 
 	gtk_set_locale ();
 	bindtextdomain (PACKAGE, GEXIF_LOCALEDIR);
@@ -55,12 +55,12 @@ main (int argc, char **argv)
 	gtk_init (&argc, &argv);
 	g_log_set_always_fatal (G_LOG_LEVEL_CRITICAL);
 
-	window = gexif_main_new ();
-	gtk_widget_show (window);
-	g_signal_connect (G_OBJECT (window), "destroy",
+	w = gexif_main_new ();
+	gtk_widget_show (w);
+	g_signal_connect (G_OBJECT (w), "destroy",
 			  G_CALLBACK (gtk_main_quit), NULL);
 	if (argc > 1)
-		gexif_main_load_file (GEXIF_MAIN (window), argv[1]);
+		gexif_main_load_file (GEXIF_MAIN (w), argv[1]);
 
 	gtk_main ();
 

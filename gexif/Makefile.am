@@ -10,6 +10,4 @@ gexif_SOURCES =					\
 	gexif.c					\
 	gexif-main.c gexif-main.h		\
 	gexif-thumbnail.c gexif-thumbnail.h
-gexif_LDADD =						\
-	$(top_builddir)/libjpeg/libjpeg.la		\
-	$(GEXIF_LIBS)
+gexif_LDADD = $(top_builddir)/libjpeg/libjpeg.la $(GEXIF_LIBS)

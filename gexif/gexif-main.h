@@ -24,9 +24,9 @@
 #include <gtk/gtkwindow.h>
 
 #define GEXIF_TYPE_MAIN     (gexif_main_get_type())
-#define GEXIF_MAIN(o)       (GTK_CHECK_CAST((o),GEXIF_TYPE_MAIN,GExifMain))
-#define GEXIF_MAIN_CLASS(k) (GTK_CHECK_CLASS_CAST((k),GEXIF_TYPE_MAIN_CLASS,GExifMainClass))
-#define GEXIF_IS_MAIN(o)    (GTK_CHECK_TYPE((o),GEXIF_TYPE_MAIN))
+#define GEXIF_MAIN(o)       (G_TYPE_CHECK_INSTANCE_CAST((o),GEXIF_TYPE_MAIN,GExifMain))
+#define GEXIF_MAIN_CLASS(k) (G_TYPE_CHECK_CLASS_CAST((k),GEXIF_TYPE_MAIN,GExifMainClass))
+#define GEXIF_IS_MAIN(o)    (G_TYPE_CHECK_INSTANCE_TYPE((o),GEXIF_TYPE_MAIN))
 
 typedef struct _GExifMain        GExifMain;
 typedef struct _GExifMainPrivate GExifMainPrivate;
