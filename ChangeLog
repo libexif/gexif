@@ -1,3 +1,9 @@
+2003-05-01  Lutz Mueller <lutz@users.sourceforge.net>
+
+	Patch by Gernot Jander <gernot@bigpond.com>:
+
+	* gexif/gexif.c: Use bind_textdomain_codepage.
+
 2003-03-13  Lutz Mueller <lutz@users.sourceforge.net>
                                                                                 
         * libjpeg/jpeg-data.c: Aravind <aravinds1@users.sourceforge.net>

@@ -38,6 +38,7 @@
 #  define gettext(String) (String)
 #  define dgettext(Domain,Message) (Message)
 #  define dcgettext(Domain,Message,Type) (Message)
+#  define bind_textdomain_codeset(Domain,String) (Domain)
 #  define bindtextdomain(Domain,Directory) (Domain)
 #  define _(String) (String)
 #  define N_(String) (String)
@@ -49,6 +50,7 @@ main (int argc, char **argv)
 	GtkWidget *w;
 
 	gtk_set_locale ();
+	bind_textdomain_codeset (PACKAGE, "UTF-8");
 	bindtextdomain (PACKAGE, GEXIF_LOCALEDIR);
 	textdomain (PACKAGE);
 
