@@ -26,6 +26,9 @@ _$*
 *.ln
 core
 # CVS default ignores end
+ABOUT-NLS
+config.rpath
+mkinstalldirs
 autom4te.cache
 intl
 stamp-h.in
@@ -34,4 +37,5 @@ conftest
 configure
 config.h.in
 aclocal.m4
+Makefile
 Makefile.in
