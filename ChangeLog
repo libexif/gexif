@@ -1,16 +1,3 @@
-2002-04-04  Hans Ulrich Niedermann <gp@n-dimensional.de>
+2002-07-23  Lutz Müller <lutz@users.sourceforge.net>
 
-	* Makefile.am: dded .tar.bz2 packaging to "make dist"
-
-2002-02-13  Lutz Müller <lutz@users.sourceforge.net>
-
-	* configure.in: Depend on libexif-gtk >= 0.2.0. Version 0.3
-
-2002-02-13  Lutz Müller <lutz@users.sourceforge.net>
-
-	* gexif/gexif.c: Give user the possibility to specify a file as
-	  argument.
-
-2002-02-06  Lutz Müller <lutz@users.sourceforge.net>
-
-	* configure.in: Version 0.2
+	gtk+-2.0 port.

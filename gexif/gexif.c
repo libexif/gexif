@@ -31,11 +31,12 @@ main (int argc, char **argv)
 	GtkWidget *window;
 
 	gtk_init (&argc, &argv);
+	g_log_set_always_fatal (G_LOG_LEVEL_CRITICAL);
 
 	window = gexif_main_new ();
 	gtk_widget_show (window);
-	gtk_signal_connect (GTK_OBJECT (window), "destroy",
-			    GTK_SIGNAL_FUNC (gtk_main_quit), NULL);
+	g_signal_connect (G_OBJECT (window), "destroy",
+			  G_CALLBACK (gtk_main_quit), NULL);
 	if (argc > 1)
 		gexif_main_load_file (GEXIF_MAIN (window), argv[1]);
 

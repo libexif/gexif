@@ -44,7 +44,7 @@ struct _GExifMainClass
 	GtkWindowClass parent_class;
 };
 
-GtkType    gexif_main_get_type (void);
+GType      gexif_main_get_type (void);
 GtkWidget *gexif_main_new (void);
 
 void       gexif_main_load_file (GExifMain *m, const gchar *path);

@@ -1,3 +1,4 @@
+AC_PREREQ(2.50)
 AC_INIT(gexif/gexif.c)
 AM_CONFIG_HEADER(config.h)
 AM_INIT_AUTOMAKE(gexif, 0.3)
@@ -21,34 +22,9 @@ AC_SUBST(LIBEXIF_CFLAGS)
 dnl ---------------------------------------------------------------------------
 dnl libexif-gtk
 dnl ---------------------------------------------------------------------------
-PKG_CHECK_MODULES(GEXIF, libexif-gtk >= 0.2.0)
+PKG_CHECK_MODULES(GEXIF, gtk+-2.0 libexif-gtk >= 0.2.0)
 AC_SUBST(GEXIF_LIBS)
 AC_SUBST(GEXIF_CFLAGS)
-
-dnl ---------------------------------------------------------------------------
-dnl gdk-pixbuf support?
-dnl ---------------------------------------------------------------------------
-have_gdk_pixbuf=false
-try_gdk_pixbuf=true
-gtk_gdk_pixbuf=no
-AC_ARG_WITH(gdk-pixbuf, [  --without-gdk-pixbuf       Don't use gdk-pixbuf],
-        if test x$withval = xno; then
-                try_gdk_pixbuf=false
-        fi
-)
-if $try_gdk_pixbuf; then
-        AC_PATH_PROG(GDK_PIXBUF_CONFIG,gdk-pixbuf-config)
-        if test -n "$GDK_PIXBUF_CONFIG" ; then
-                have_gdk_pixbuf=true
-                gdk_pixbuf_msg=yes
-                GDK_PIXBUF_CFLAGS=`$GDK_PIXBUF_CONFIG --cflags`
-                GDK_PIXBUF_LIBS=`$GDK_PIXBUF_CONFIG --libs`
-                AC_DEFINE(HAVE_GDK_PIXBUF)
-        fi
-fi
-AC_SUBST(GDK_PIXBUF_CFLAGS)
-AC_SUBST(GDK_PIXBUF_LIBS)
-AM_CONDITIONAL(HAVE_GDK_PIXBUF, $have_gdk_pixbuf)
 
 CFLAGS="$CFLAGS -Wall -Wchar-subscripts -Wmissing-declarations -Wmissing-prototypes -Wnested-externs -Wpointer-arith -Werror"
 AC_SUBST(CFLAGS)

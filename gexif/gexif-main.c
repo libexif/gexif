@@ -21,7 +21,10 @@
 #include <config.h>
 #include "gexif-main.h"
 
+#include <string.h>
+
 #include <gdk/gdkkeysyms.h>
+
 #include <gtk/gtkmenuitem.h>
 #include <gtk/gtkmenu.h>
 #include <gtk/gtklabel.h>
@@ -31,6 +34,8 @@
 #include <gtk/gtksignal.h>
 #include <gtk/gtkfilesel.h>
 #include <gtk/gtkbutton.h>
+#include <gtk/gtkitemfactory.h>
+#include <gtk/gtkstock.h>
 
 #include <libjpeg/jpeg-data.h>
 
@@ -88,50 +93,55 @@ gexif_main_destroy (GtkObject *object)
 }
 
 static void
-gexif_main_finalize (GtkObject *object)
+gexif_main_finalize (GObject *object)
 {
 	GExifMain *m = GEXIF_MAIN (object);
 
 	g_free (m->priv);
 
-	GTK_OBJECT_CLASS (parent_class)->finalize (object);
+	G_OBJECT_CLASS (parent_class)->finalize (object);
 }
 
 static void
-gexif_main_class_init (GExifMainClass *klass)
+gexif_main_class_init (gpointer g_class, gpointer class_data)
 {
 	GtkObjectClass *object_class;
+	GObjectClass *gobject_class;
 
-	object_class = GTK_OBJECT_CLASS (klass);
+	object_class = GTK_OBJECT_CLASS (g_class);
 	object_class->destroy  = gexif_main_destroy;
-	object_class->finalize = gexif_main_finalize;
 
-	parent_class = gtk_type_class (PARENT_TYPE);
+	gobject_class = G_OBJECT_CLASS (g_class);
+	gobject_class->finalize = gexif_main_finalize;
+
+	parent_class = g_type_class_peek_parent (g_class);
 }
 
 static void
-gexif_main_init (GExifMain *m)
+gexif_main_init (GTypeInstance *instance, gpointer g_class)
 {
+	GExifMain *m = GEXIF_MAIN (instance);
+
 	m->priv = g_new0 (GExifMainPrivate, 1);
 }
 
-GtkType
+GType
 gexif_main_get_type (void)
 {
-	static GtkType main_type = 0;
+	static GType t = 0;
+	GTypeInfo ti;
 
-	if (!main_type) {
-		static const GtkTypeInfo main_info = {
-			"GExifMain",
-			sizeof (GExifMain),
-			sizeof (GExifMainClass),
-			(GtkClassInitFunc)  gexif_main_class_init,
-			(GtkObjectInitFunc) gexif_main_init,
-			NULL, NULL, NULL};
-		main_type = gtk_type_unique (PARENT_TYPE, &main_info);
+	if (!t) {
+		memset (&ti, 0, sizeof (GTypeInfo));
+		ti.class_size     = sizeof (GExifMainClass);
+		ti.class_init     = gexif_main_class_init;
+		ti.instance_size  = sizeof (GExifMain);
+		ti.instance_init  = gexif_main_init;
+
+		t = g_type_register_static (PARENT_TYPE, "GExifMain", &ti, 0);
 	}
 
-	return (main_type);
+	return (t);
 }
 
 static void
@@ -181,14 +191,20 @@ gexif_main_save_file (GExifMain *m, const gchar *path)
 }
 
 static void
-on_exit_activate (GtkMenuItem *item, GExifMain *m)
+action_exit (gpointer callback_data, guint callback_action,
+	     GtkWidget *widget)
 {
+	GExifMain *m = GEXIF_MAIN (callback_data);
+
 	gtk_object_destroy (GTK_OBJECT (m));
 }
 
 static void
-on_save_activate (GtkMenuItem *item, GExifMain *m)
+action_save (gpointer callback_data, guint callback_action,
+	     GtkWidget *widget)
 {
+	GExifMain *m = GEXIF_MAIN (callback_data);
+
 	gexif_main_save_file (m, m->priv->path);
 }
 
@@ -214,18 +230,20 @@ on_save_as_ok_clicked (GtkButton *button, GExifMain *m)
 }
 
 static void
-on_save_as_activate (GtkMenuItem *item, GExifMain *m)
+action_save_as (gpointer callback_data, guint callback_action,
+		GtkWidget *widget)
 {
+	GExifMain *m = GEXIF_MAIN (callback_data);
 	GtkWidget *fsel;
 
 	fsel = gtk_file_selection_new (_("Save As..."));
 	gtk_widget_show (fsel);
 	gtk_window_set_transient_for (GTK_WINDOW (fsel), GTK_WINDOW (m));
-	gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (fsel)->ok_button),
-			"clicked", GTK_SIGNAL_FUNC (on_save_as_ok_clicked), m);
-	gtk_signal_connect (
+	g_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (fsel)->ok_button),
+			"clicked", G_CALLBACK (on_save_as_ok_clicked), m);
+	g_signal_connect (
 			GTK_OBJECT (GTK_FILE_SELECTION (fsel)->cancel_button),
-			"clicked", GTK_SIGNAL_FUNC (on_cancel_clicked), m);
+			"clicked", G_CALLBACK (on_cancel_clicked), m);
 	gtk_file_selection_set_filename (GTK_FILE_SELECTION (fsel),
 					 m->priv->path);
 }
@@ -243,29 +261,34 @@ on_open_ok_clicked (GtkButton *button, GExifMain *m)
 }
 
 static void
-on_open_activate (GtkMenuItem *item, GExifMain *m)
+action_open (gpointer callback_data, guint callback_action,
+	     GtkWidget *widget)
 {
+	GExifMain *m = GEXIF_MAIN (callback_data);
 	GtkWidget *fsel;
 
 	fsel = gtk_file_selection_new (_("Open..."));
 	gtk_widget_show (fsel);
 	gtk_window_set_transient_for (GTK_WINDOW (fsel), GTK_WINDOW (m));
-	gtk_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (fsel)->ok_button),
-		"clicked", GTK_SIGNAL_FUNC (on_open_ok_clicked), m);
-	gtk_signal_connect (
+	g_signal_connect (GTK_OBJECT (GTK_FILE_SELECTION (fsel)->ok_button),
+		"clicked", G_CALLBACK (on_open_ok_clicked), m);
+	g_signal_connect (
 		GTK_OBJECT (GTK_FILE_SELECTION (fsel)->cancel_button),
-		"clicked", GTK_SIGNAL_FUNC (on_cancel_clicked), m);
+		"clicked", G_CALLBACK (on_cancel_clicked), m);
 }
 
 static void
-on_about_activate (GtkMenuItem *item, GExifMain *m)
+action_about (gpointer callback_data, guint callback_action,
+	      GtkWidget *widget)
 {
 	g_warning ("Implement!");
 }
 
 static void
-on_thumbnail_activate (GtkMenuItem *item, GExifMain *m)
+action_thumbnail (gpointer callback_data, guint callback_action,
+		  GtkWidget *widget)
 {
+	GExifMain *m = GEXIF_MAIN (callback_data);
 	GtkWidget *dialog;
 	ExifData *edata;
 
@@ -278,148 +301,49 @@ on_thumbnail_activate (GtkMenuItem *item, GExifMain *m)
 	}
 }
 
+static GtkItemFactoryEntry mi[] =
+{
+	{"/_File", NULL, 0, 0, "<Branch>"},
+	{"/File/_Open...", NULL, action_open, 0, "<StockItem>", GTK_STOCK_OPEN},
+	{"/File/_Save", NULL, action_save, 0, "<StockItem>", GTK_STOCK_SAVE},
+	{"/File/Save _As...", NULL, action_save_as, 0, "<StockItem>",
+							GTK_STOCK_SAVE_AS},
+	{"/File/sep1", NULL, 0, 0, "<Separator>"},
+	{"/File/E_xit", NULL, action_exit, 0, "<StockItem>", GTK_STOCK_QUIT},
+	{"/_View", NULL, 0, 0, "<Branch>"},
+	{"/View/_Thumbnail", NULL, action_thumbnail, 0, NULL, NULL},
+	{"/_Help", NULL, 0, 0, "<Branch>"},
+	{"/Help/About", NULL, action_about, 0, NULL, NULL}
+};
+
 GtkWidget *
 gexif_main_new (void)
 {
 	GExifMain *m;
-	GtkWidget *browser, *vbox, *menubar, *item, *menu;
-	GtkAccelGroup *accel_group, *accels;
-	GtkTooltips *tooltips;
-	guint key;
+	GtkWidget *browser, *vbox, *w;
+	GtkItemFactory *gif;
+	GtkAccelGroup *ag;
 
-	m = gtk_type_new (GEXIF_TYPE_MAIN);
+	m = g_object_new (GEXIF_TYPE_MAIN, NULL);
 	gtk_window_set_title (GTK_WINDOW (m), PACKAGE);
 	gtk_window_set_default_size (GTK_WINDOW (m), 640, 480);
-	gtk_window_set_policy (GTK_WINDOW (m), TRUE, TRUE, TRUE);
-	gtk_signal_connect (GTK_OBJECT (m), "delete_event",
-			    GTK_SIGNAL_FUNC (gtk_object_destroy), NULL);
+	g_signal_connect (GTK_OBJECT (m), "delete_event",
+			  G_CALLBACK (gtk_object_destroy), NULL);
 
 	vbox = gtk_vbox_new (FALSE, 1);
 	gtk_widget_show (vbox);
 	gtk_container_add (GTK_CONTAINER (m), vbox);
 
-	menubar = gtk_menu_bar_new ();
-	gtk_widget_show (menubar);
-	gtk_box_pack_start (GTK_BOX (vbox), menubar, FALSE, FALSE, 0);
-
-	accel_group = gtk_accel_group_new ();
-	tooltips = gtk_tooltips_new ();
-
-	/*
-	 * File menu
-	 */
-	item = gtk_menu_item_new_with_label ("");
-	gtk_widget_show (item);
-	key = gtk_label_parse_uline (GTK_LABEL (GTK_BIN (item)->child),
-				     _("_File"));
-	gtk_widget_add_accelerator (item, "activate_item", accel_group, key,
-				    GDK_MOD1_MASK, 0);
-	gtk_container_add (GTK_CONTAINER (menubar), item);
-
-	menu = gtk_menu_new ();
-	gtk_menu_item_set_submenu (GTK_MENU_ITEM (item), menu);
-	accels = gtk_menu_ensure_uline_accel_group (GTK_MENU (menu));
-
-	/* Open */
-	item = gtk_menu_item_new_with_label ("");
-	gtk_widget_show (item);
-	key = gtk_label_parse_uline (GTK_LABEL (GTK_BIN (item)->child),
-				     _("_Open..."));
-	gtk_widget_add_accelerator (item, "activate_item", accels, key, 0, 0);
-	gtk_container_add (GTK_CONTAINER (menu), item);
-	gtk_widget_add_accelerator (item, "activate", accels, GDK_o,
-				    GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
-	gtk_signal_connect (GTK_OBJECT (item), "activate",
-			    GTK_SIGNAL_FUNC (on_open_activate), m);
-
-	/* Save */
-	item = gtk_menu_item_new_with_label ("");
-	gtk_widget_show (item);
-	key = gtk_label_parse_uline (GTK_LABEL (GTK_BIN (item)->child),
-				     _("_Save"));
-	gtk_widget_add_accelerator (item, "activate_item", accels, key, 0, 0);
-	gtk_widget_add_accelerator (item, "activate", accels, GDK_s,
-				    GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
-	gtk_signal_connect (GTK_OBJECT (item), "activate",
-			    GTK_SIGNAL_FUNC (on_save_activate), m);
-	gtk_container_add (GTK_CONTAINER (menu), item);
-
-	/* Save as */
-	item = gtk_menu_item_new_with_label ("");
-	gtk_widget_show (item);
-	key = gtk_label_parse_uline (GTK_LABEL (GTK_BIN (item)->child),
-				     _("Save _As..."));
-	gtk_widget_add_accelerator (item, "activate_item", accels, key, 0, 0);
-	gtk_container_add (GTK_CONTAINER (menu), item);
-	gtk_signal_connect (GTK_OBJECT (item), "activate",
-			    GTK_SIGNAL_FUNC (on_save_as_activate), m);
-
-	item = gtk_menu_item_new ();
-	gtk_widget_show (item);
-	gtk_container_add (GTK_CONTAINER (menu), item);
-	gtk_widget_set_sensitive (item, FALSE);
-
-	/* Exit */
-	item = gtk_menu_item_new_with_label ("");
-	gtk_widget_show (item);
-	key = gtk_label_parse_uline (GTK_LABEL (GTK_BIN (item)->child),
-				     _("E_xit"));
-	gtk_widget_add_accelerator (item, "activate_item", accels, key, 0, 0);
-	gtk_widget_add_accelerator (item, "activate", accels, GDK_q,
-				    GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
-	gtk_signal_connect (GTK_OBJECT (item), "activate",
-			    GTK_SIGNAL_FUNC (on_exit_activate), m);
-	gtk_container_add (GTK_CONTAINER (menu), item);
-
-	/*
-	 * View menu
-	 */
-	item = gtk_menu_item_new_with_label ("");
-	gtk_widget_show (item);
-	key = gtk_label_parse_uline (GTK_LABEL (GTK_BIN (item)->child),
-				     _("_View"));
-	gtk_widget_add_accelerator (item, "activate_item", accel_group, key,
-				    GDK_MOD1_MASK, 0);
-	gtk_container_add (GTK_CONTAINER (menubar), item);
-
-	menu = gtk_menu_new ();
-	gtk_menu_item_set_submenu (GTK_MENU_ITEM (item), menu);
-	accels = gtk_menu_ensure_uline_accel_group (GTK_MENU (menu));
-
-	/* Thumbnail */
-	item = gtk_menu_item_new_with_label ("");
-	gtk_widget_show (item);
-	key = gtk_label_parse_uline (GTK_LABEL (GTK_BIN (item)->child),
-				     _("Thumbnail"));
-	gtk_widget_add_accelerator (item, "activate_item", accels, key, 0, 0);
-	gtk_signal_connect (GTK_OBJECT (item), "activate",
-			    GTK_SIGNAL_FUNC (on_thumbnail_activate), m);
-	gtk_container_add (GTK_CONTAINER (menu), item);
-
-	/*
-	 * Help menu
-	 */
-	item = gtk_menu_item_new_with_label ("");
-	gtk_widget_show (item);
-	key = gtk_label_parse_uline (GTK_LABEL (GTK_BIN (item)->child),
-				     _("_Help"));
-	gtk_widget_add_accelerator (item, "activate_item", accel_group, key,
-				    GDK_MOD1_MASK, 0);
-	gtk_container_add (GTK_CONTAINER (menubar), item);
-
-	menu = gtk_menu_new ();
-	gtk_menu_item_set_submenu (GTK_MENU_ITEM (item), menu);
-	accels = gtk_menu_ensure_uline_accel_group (GTK_MENU (menu));
-
-	/* About */
-	item = gtk_menu_item_new_with_label ("");
-	gtk_widget_show (item);
-	key = gtk_label_parse_uline (GTK_LABEL (GTK_BIN (item)->child),
-				     _("_About"));
-	gtk_widget_add_accelerator (item, "activate_item", accels, key, 0, 0);
-	gtk_signal_connect (GTK_OBJECT (item), "activate",
-			    GTK_SIGNAL_FUNC (on_about_activate), m);
-	gtk_container_add (GTK_CONTAINER (menu), item); 
+	ag = gtk_accel_group_new ();
+	gif = gtk_item_factory_new (GTK_TYPE_MENU_BAR, "<main>", ag);
+	g_object_set_data_full (G_OBJECT (m), "<main>", gif,
+				(GDestroyNotify) g_object_unref);
+	gtk_window_add_accel_group (GTK_WINDOW (m), ag);
+	gtk_item_factory_create_items (gif, G_N_ELEMENTS (mi), mi, m);
+	w = gtk_item_factory_get_widget (gif, "<main>");
+	gtk_widget_show (w);
+	gtk_box_pack_start (GTK_BOX (vbox), w, FALSE, FALSE, 0);
+	g_object_unref (G_OBJECT (gif));
 
 	browser = gtk_exif_browser_new ();
 	gtk_widget_show (browser);

@@ -1,7 +1,7 @@
-INCLUDES =			\
-	-I$(top_srcdir)		\
-	$(GEXIF_CFLAGS)		\
-	$(GDK_PIXBUF_CFLAGS)
+INCLUDES =				\
+	-I$(top_srcdir)			\
+	-DGTK_DISABLE_DEPRECATED	\
+	$(GEXIF_CFLAGS)
 
 bin_PROGRAMS = gexif
 
@@ -11,5 +11,4 @@ gexif_SOURCES =					\
 	gexif-thumbnail.c gexif-thumbnail.h
 gexif_LDADD =						\
 	$(top_builddir)/libjpeg/libjpeg.la		\
-	$(GEXIF_LIBS)					\
-	$(GDK_PIXBUF_LIBS)
+	$(GEXIF_LIBS)
