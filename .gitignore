@@ -26,3 +26,10 @@ _$*
 *.ln
 core
 # CVS default ignores end
+stamp-h.in
+conftest.c
+conftest
+configure
+config.h.in
+aclocal.m4
+Makefile.in
