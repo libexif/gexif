@@ -3,6 +3,9 @@ AC_INIT([GTK EXIF viewer/editor],[0.5],[libexif-devel@lists.sourceforge.net],[ge
 AC_CONFIG_SRCDIR([gexif/gexif.c])
 AC_CONFIG_HEADERS([config.h])
 AM_INIT_AUTOMAKE([gnu 1.8 dist-bzip2])
+
+GP_CHECK_SHELL_ENVIRONMENT
+
 GP_CONFIG_MSG([Source code location],[${srcdir}])
 
 AC_PROG_CC
