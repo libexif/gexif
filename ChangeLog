@@ -1,3 +1,8 @@
+2003-03-13  Lutz Mueller <lutz@users.sourceforge.net>
+                                                                                
+        * libjpeg/jpeg-data.c: Aravind <aravinds1@users.sourceforge.net>
+          found a bug there.
+                                                                                
 2002-12-11  Lutz Müller <lutz@users.sourceforge.net>
 
 	* gexif/gexif.c: Make warnings fatal.
