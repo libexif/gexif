@@ -8,9 +8,8 @@ gexif_SOURCES =					\
 # We cannot define -DGTK_DISABLE_DEPRECATED here
 # as long as we're still using GtkItemFactory.
 
-gexif_CFLAGS = \
-	$(AM_CFLAGS) $(CFLAGS)				\
-	-I$(top_srcdir)					\
+gexif_CPPFLAGS = \
+	$(AM_CPPFLAGS) $(CPPFLAGS)			\
 	$(LIBEXIF_CFLAGS)				\
 	$(LIBEXIF_GTK_CFLAGS)				\
 	$(GTK_CFLAGS)
