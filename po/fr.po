@@ -1,0 +1,23 @@
+# GEXIF PO FILE
+# Copyright © 2003 Free Software Foundation, Inc.
+# This file is distributed under the same license as the GEXIF package.
+# Arnaud Launay <asl@launay.org>, 2002.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gexif 0.5\n"
+"POT-Creation-Date: 2003-01-07 18:59+0100\n"
+"PO-Revision-Date: 2003-01-07 19:00+0100\n"
+"Last-Translator: Arnaud Launay <asl@launay.org>\n"
+"Language-Team: Français <traduc@traduc.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: gexif/gexif-main.c:239
+msgid "Save As..."
+msgstr "Sauver sous..."
+
+#: gexif/gexif-main.c:270
+msgid "Open..."
+msgstr "Ouvrir..."
