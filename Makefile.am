@@ -1,4 +1,4 @@
-SUBDIRS = libjpeg gexif
+SUBDIRS = libjpeg gexif po intl
 
 
 ########################################################################

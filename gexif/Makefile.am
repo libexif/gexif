@@ -1,6 +1,7 @@
-INCLUDES =				\
-	-I$(top_srcdir)			\
-	-DGTK_DISABLE_DEPRECATED	\
+INCLUDES =						\
+	-I$(top_srcdir)					\
+	-DGTK_DISABLE_DEPRECATED			\
+	-DGEXIF_LOCALEDIR="\"$(datadir)/locale\""	\
 	$(GEXIF_CFLAGS)
 
 bin_PROGRAMS = gexif

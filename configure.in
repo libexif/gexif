@@ -9,8 +9,8 @@ AM_PROG_LIBTOOL
 dnl ---------------------------------------------------------------------------
 dnl i18n support
 dnl ---------------------------------------------------------------------------
-dnl ALL_LINGUAS=""
-dnl AM_GNU_GETTEXT
+ALL_LINGUAS=""
+AM_GNU_GETTEXT
 
 dnl ---------------------------------------------------------------------------
 dnl libexif
@@ -33,4 +33,6 @@ AC_OUTPUT([
   Makefile
   libjpeg/Makefile
   gexif/Makefile
+  intl/Makefile
+  po/Makefile.in
 ])
