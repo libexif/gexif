@@ -53,7 +53,7 @@ main (int argc, char **argv)
 	textdomain (PACKAGE);
 
 	gtk_init (&argc, &argv);
-	g_log_set_always_fatal (G_LOG_LEVEL_CRITICAL);
+	g_log_set_always_fatal (G_LOG_LEVEL_CRITICAL | G_LOG_LEVEL_WARNING);
 
 	w = gexif_main_new ();
 	gtk_widget_show (w);
