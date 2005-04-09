@@ -62,7 +62,7 @@ AC_SUBST([AM_LDFLAGS])dnl
 AC_CONFIG_FILES([
   po/Makefile.in
   Makefile
-  m4/Makefile
+  m4m/Makefile
   libjpeg/Makefile
   gexif/Makefile
 ])
