@@ -1,5 +1,5 @@
-SUBDIRS = m4 po libjpeg gexif
+SUBDIRS = m4m po libjpeg gexif
 
 EXTRA_DIST = autogen.sh
 
-ACLOCAL_AMFLAGS = -I m4
+ACLOCAL_AMFLAGS = -I m4m
