@@ -1,0 +1,22 @@
+# Polish translation for gexif.
+# This file is distributed under the same license as the gexif package.
+# Jakub Bogusz <qboosh@pld-linux.org>, 2005.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gexif 0.5\n"
+"POT-Creation-Date: 2003-01-07 19:11+0100\n"
+"PO-Revision-Date: 2005-03-21 18:20+0100\n"
+"Last-Translator: Jakub Bogusz <qboosh@pld-linux.org>\n"
+"Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: gexif/gexif-main.c:239
+msgid "Save As..."
+msgstr "Zapisz jako..."
+
+#: gexif/gexif-main.c:270
+msgid "Open..."
+msgstr "Otwórz..."
