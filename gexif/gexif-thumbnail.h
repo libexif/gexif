@@ -28,8 +28,11 @@
 #define GEXIF_IS_THUMBNAIL(o) (GTK_CHECK_TYPE((o),GEXIF_TYPE_THUMBNAIL))
 
 typedef struct _GExifThumbnail        GExifThumbnail;
-typedef struct _GExifThumbnailPrivate GExifThumbnailPrivate;
 typedef struct _GExifThumbnailClass   GExifThumbnailClass;
+
+/* use the struct and typedef if you have actually defined some struct members */
+typedef void GExifThumbnailPrivate;
+/* typedef struct _GExifThumbnailPrivate GExifThumbnailPrivate; */
 
 struct _GExifThumbnail
 {

@@ -52,9 +52,11 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gdk-pixbuf/gdk-pixbuf-loader.h>
 
+/* define this later if needed
 struct _GExifThumbnailPrivate
 {
 };
+*/
 
 #define PARENT_TYPE GTK_TYPE_DIALOG
 static GtkDialogClass *parent_class;
