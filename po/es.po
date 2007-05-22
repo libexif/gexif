@@ -1,16 +1,17 @@
 # gexif Spanish Translation.
-# Copyright © 2002 Free Software Foundation, Inc.
+# Copyright Â© 2002 Free Software Foundation, Inc.
 # Fabian Mandelbaum <fabman@mandrakesoft.com>, 2002.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gexif\n"
-"POT-Creation-Date: 2002-07-23 11:00+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-05-17 17:23+0200\n"
 "PO-Revision-Date: 2002-09-03 20:10-0300\n"
 "Last-Translator: Fabian Mandelbaum <fabman@mandrakesoft.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: gexif/gexif-main.c:239
