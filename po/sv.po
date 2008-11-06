@@ -1,0 +1,29 @@
+# Swedish translation for gexif.
+# Copyright (C) 2007 Free Software Foundation, Inc.
+# This file is distributed under the same license as the gexif package.
+# Daniel Nylander <po@danielnylander.se>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gexif\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-08-23 00:13+0200\n"
+"PO-Revision-Date: 2007-08-29 18:04+0100\n"
+"Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
+"Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../gexif/gexif-main.c:239
+msgid "Save As..."
+msgstr "Spara som..."
+
+#: ../gexif/gexif-main.c:270
+msgid "Open..."
+msgstr "Öppna..."
+
+#: ../gexif/gexif-thumbnail.c:154
+msgid "Close"
+msgstr "Stäng"
+
