@@ -1,6 +1,10 @@
 2009-09-24  Dan Fandrich <dan@coneharvesters.com>
 
 	* po/POTFILES.in: added additional file that needs translation
+	* Added the text of the LGPL V2.1 in COPYING so there isn't any
+	  confusion as to the licensing terms of the project. GNU
+	  autotools adds a GPL COPYING file by default if this doesn't
+	  exist, which is wrong.
 
 2008-11-05  Dan Fandrich <dan@coneharvesters.com>
 
