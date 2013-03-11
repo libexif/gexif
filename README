@@ -1,11 +1,10 @@
-         gexif
-	 =====
+    gexif
+    =====
 
 WHAT IT IS
 ==========
 
-gexif is a GUI which shows the EXIF tags contained in many JPG and TIFF files.
-
+gexif is a GUI which shows the EXIF tags contained in JPG and TIFF files.
 
 REQUIREMENTS
 ============

@@ -8,6 +8,7 @@ libjpeg_la_CFLAGS = \
 	$(AM_CFLAGS) $(CFLAGS)		\
 	-I$(top_srcdir)			\
 	$(LIBEXIF_CFLAGS)
+
 libjpeg_la_LIBADD = \
 	$(AM_LDFLAGS) $(LDFLAGS)	\
 	$(LIBEXIF_LIBS)

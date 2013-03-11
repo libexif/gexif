@@ -1,16 +1,16 @@
 /* gexif-main.c
  *
- * Copyright © 2001 Lutz Müller <lutz@users.sourceforge.net>
+ * Copyright Â© 2001 Lutz MÃ¼ller <lutz@users.sourceforge.net>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2 of the License, or (at your option) any later version.
  *
- * This library is distributed in the hope that it will be useful, 
- * but WITHOUT ANY WARRANTY; without even the implied warranty of 
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details. 
+ * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the
@@ -20,28 +20,15 @@
 
 #include "config.h"
 #include "gexif-main.h"
+#include "gexif-thumbnail.h"
 
 #include <string.h>
 
 #include <gdk/gdkkeysyms.h>
-
-#include <gtk/gtkmenuitem.h>
-#include <gtk/gtkmenu.h>
-#include <gtk/gtklabel.h>
-#include <gtk/gtkvbox.h>
-#include <gtk/gtktooltips.h>
-#include <gtk/gtkmenubar.h>
-#include <gtk/gtksignal.h>
-#include <gtk/gtkfilesel.h>
-#include <gtk/gtkbutton.h>
-#include <gtk/gtkitemfactory.h>
-#include <gtk/gtkstock.h>
+#include <gtk/gtk.h>
 
 #include <libjpeg/jpeg-data.h>
-
 #include <libexif-gtk/gtk-exif-browser.h>
-
-#include "gexif-thumbnail.h"
 
 #ifdef ENABLE_NLS
 #  include <libintl.h>

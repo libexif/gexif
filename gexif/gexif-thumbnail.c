@@ -1,16 +1,16 @@
 /* gexif-thumbnail.c
  *
- * Copyright © 2001 Lutz Müller <lutz@users.sf.net>
+ * Copyright Â© 2001 Lutz MÃ¼ller <lutz@users.sf.net>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2 of the License, or (at your option) any later version.
  *
- * This library is distributed in the hope that it will be useful, 
- * but WITHOUT ANY WARRANTY; without even the implied warranty of 
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details. 
+ * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the
@@ -42,12 +42,7 @@
 
 #include <string.h>
 
-#include <gtk/gtkbutton.h>
-#include <gtk/gtklabel.h>
-#include <gtk/gtksignal.h>
-#include <gtk/gtkhbox.h>
-#include <gtk/gtkscrolledwindow.h>
-#include <gtk/gtkimage.h>
+#include <gtk/gtk.h>
 
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gdk-pixbuf/gdk-pixbuf-loader.h>
@@ -66,7 +61,8 @@ gexif_thumbnail_destroy (GtkObject *object)
 {
 	GExifThumbnail *thumbnail = GEXIF_THUMBNAIL (object);
 
-	thumbnail = NULL;
+	/* Nothing to free here */
+	(void)thumbnail;
 
 	GTK_OBJECT_CLASS (parent_class)->destroy (object);
 }
