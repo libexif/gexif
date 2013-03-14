@@ -24,8 +24,8 @@
 #include <gtk/gtk.h>
 
 #define GEXIF_TYPE_THUMBNAIL  (gexif_thumbnail_get_type ())
-#define GEXIF_THUMBNAIL(o)    (GTK_CHECK_CAST((o),GEXIF_TYPE_THUMBNAIL,GExifThumbnail))
-#define GEXIF_IS_THUMBNAIL(o) (GTK_CHECK_TYPE((o),GEXIF_TYPE_THUMBNAIL))
+#define GEXIF_THUMBNAIL(o)    (G_TYPE_CHECK_INSTANCE_CAST((o),GEXIF_TYPE_THUMBNAIL,GExifThumbnail))
+#define GEXIF_IS_THUMBNAIL(o) (G_TYPE_CHECK_INSTANCE_TYPE((o),GEXIF_TYPE_THUMBNAIL))
 
 typedef struct _GExifThumbnail        GExifThumbnail;
 typedef struct _GExifThumbnailClass   GExifThumbnailClass;
@@ -46,7 +46,7 @@ struct _GExifThumbnailClass
 	GtkDialogClass parent_class;
 };
 
-GtkType    gexif_thumbnail_get_type (void);
+GType      gexif_thumbnail_get_type (void);
 GtkWidget *gexif_thumbnail_new      (const guchar *data, guint size);
 
 #endif /* __GEXIF_THUMBNAIL_H__ */

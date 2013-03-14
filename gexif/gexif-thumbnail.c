@@ -57,14 +57,26 @@ struct _GExifThumbnailPrivate
 static GtkDialogClass *parent_class;
 
 static void
+#if GTK_CHECK_VERSION(3,0,0)
+gexif_thumbnail_destroy (GtkWidget *widget)
+#else
 gexif_thumbnail_destroy (GtkObject *object)
+#endif
 {
+#if GTK_CHECK_VERSION(3,0,0)
+	GExifThumbnail *thumbnail = GEXIF_THUMBNAIL (widget);
+#else
 	GExifThumbnail *thumbnail = GEXIF_THUMBNAIL (object);
+#endif
 
 	/* Nothing to free here */
 	(void)thumbnail;
 
+#if GTK_CHECK_VERSION(3,0,0)
+	GTK_WIDGET_CLASS (parent_class)->destroy (widget);
+#else
 	GTK_OBJECT_CLASS (parent_class)->destroy (object);
+#endif
 }
 
 static void
@@ -80,11 +92,19 @@ gexif_thumbnail_finalize (GObject *object)
 static void
 gexif_thumbnail_class_init (gpointer g_class, gpointer class_data)
 {
+#if GTK_CHECK_VERSION(3,0,0)
+	GtkWidgetClass *widget_class;
+	GObjectClass *gobject_class;
+
+	widget_class = GTK_WIDGET_CLASS (g_class);
+	widget_class->destroy = gexif_thumbnail_destroy;
+#else
 	GtkObjectClass *object_class;
 	GObjectClass *gobject_class;
 
 	object_class = GTK_OBJECT_CLASS (g_class);
 	object_class->destroy  = gexif_thumbnail_destroy;
+#endif
 
 	gobject_class = G_OBJECT_CLASS (g_class);
 	gobject_class->finalize = gexif_thumbnail_finalize;
@@ -122,7 +142,11 @@ gexif_thumbnail_get_type (void)
 static void
 on_close_clicked (GtkButton *button, GExifThumbnail *thumbnail)
 {
+#if GTK_CHECK_VERSION(3,0,0)
+	gtk_widget_destroy (GTK_WIDGET (thumbnail));
+#else
 	gtk_object_destroy (GTK_OBJECT (thumbnail));
+#endif
 }
 
 GtkWidget *
@@ -134,8 +158,13 @@ gexif_thumbnail_new (const guchar *data, guint size)
 	GdkPixbuf *pixbuf;
 
 	thumbnail = g_object_new (GEXIF_TYPE_THUMBNAIL, NULL);
+#if GTK_CHECK_VERSION(3,0,0)
+	g_signal_connect (G_OBJECT (thumbnail), "delete_event",
+			  G_CALLBACK (gtk_widget_destroy), NULL);
+#else
 	g_signal_connect (GTK_OBJECT (thumbnail), "delete_event",
 			  G_CALLBACK (gtk_object_destroy), NULL);
+#endif
 
 	loader = gdk_pixbuf_loader_new ();
 	gdk_pixbuf_loader_write (loader, data, size, NULL);
@@ -144,15 +173,28 @@ gexif_thumbnail_new (const guchar *data, guint size)
 	image = gtk_image_new_from_pixbuf (pixbuf);
 	g_object_unref (G_OBJECT (loader));
 	gtk_widget_show (image);
+
+#if GTK_CHECK_VERSION(2,14,0)
+	gtk_box_pack_start (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (thumbnail))),
+			    image, FALSE, FALSE, 0);
+#else
 	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (thumbnail)->vbox),
 			    image, FALSE, FALSE, 0);
+#endif
 
 	button = gtk_button_new_with_label (_("Close"));
 	gtk_widget_show (button);
-	g_signal_connect (GTK_OBJECT (button), "clicked",
+	g_signal_connect (G_OBJECT (button), "clicked",
 			  G_CALLBACK (on_close_clicked), thumbnail);
+
+#if GTK_CHECK_VERSION(2,14,0)
+	gtk_container_add (GTK_CONTAINER (gtk_dialog_get_action_area (GTK_DIALOG (thumbnail))),
+			   button);
+#else
 	gtk_container_add (GTK_CONTAINER (GTK_DIALOG (thumbnail)->action_area),
 			   button);
+#endif
+
 	gtk_widget_grab_focus (button);
 
 	return (GTK_WIDGET (thumbnail));

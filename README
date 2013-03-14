@@ -9,5 +9,10 @@ gexif is a GUI which shows the EXIF tags contained in JPG and TIFF files.
 REQUIREMENTS
 ============
 
-gexif requires libexif-gtk, and thus libexif and GTK+.
+gexif requires libexif-gtk, and thus libexif and either gtk2 or gtk3.
 
+NOTE TO PACKAGERS
+=================
+
+The default is to build gexif with gtk2 (minimum version of gtk2: 2.6).
+The configure option --with-gtk3 allows building gexif with gtk3.

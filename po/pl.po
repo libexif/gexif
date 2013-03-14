@@ -1,23 +1,81 @@
 # Polish translation for gexif.
 # This file is distributed under the same license as the gexif package.
 # Jakub Bogusz <qboosh@pld-linux.org>, 2005.
+# Valère Monseur <valere.monseur@ymail.com>, 2011.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gexif 0.5\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-05-17 17:23+0200\n"
+"Project-Id-Version: gexif 0.6\n"
+"Report-Msgid-Bugs-To: libexif-devel@lists.sourceforge.net\n"
+"POT-Creation-Date: 2011-10-24 18:48+0200\n"
 "PO-Revision-Date: 2005-03-21 18:20+0100\n"
-"Last-Translator: Jakub Bogusz <qboosh@pld-linux.org>\n"
-"Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
+"Last-Translator: Valère Monseur <valere.monseur@ymail.com>\n"
+"Language-Team: \n"
+"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gexif/gexif-main.c:239
+#: gexif.desktop.in.h:1
+msgid "gexif"
+msgstr "gexif"
+
+#: gexif.desktop.in.h:2
+msgid "gexif is a GUI that shows the EXIF tags contained in JPG and TIFF files"
+msgstr "gexif jest GUI, który pokazuje EXIF zawartych w JPG i TIFF"
+
+#: gexif/gexif-main.c:176
+msgid "No EXIF data found!"
+msgstr "Nie znaleziono EXIF dane!"
+
+#: gexif/gexif-main.c:249
 msgid "Save As..."
 msgstr "Zapisz jako..."
 
-#: gexif/gexif-main.c:270
+#: gexif/gexif-main.c:280
 msgid "Open..."
 msgstr "Otwórz..."
+
+#: gexif/gexif-main.c:307
+msgid "gexif is the GTK+ based GUI interface to libexif-gtk"
+msgstr "gexif jest GTK+ interfejs GUI do libexif-gtk"
+
+#: gexif/gexif-main.c:367
+msgid "_File"
+msgstr "_Plik"
+
+#: gexif/gexif-main.c:368
+msgid "_Open..."
+msgstr "_Otwórz..."
+
+#: gexif/gexif-main.c:369
+msgid "_Save"
+msgstr "_Zapisz"
+
+#: gexif/gexif-main.c:370
+msgid "Save _As..."
+msgstr "Z_apisz jako..."
+
+#: gexif/gexif-main.c:372
+msgid "E_xit"
+msgstr "Za_kończ"
+
+#: gexif/gexif-main.c:373
+msgid "_View"
+msgstr "_Widok"
+
+#: gexif/gexif-main.c:374
+msgid "_Thumbnail..."
+msgstr "_Miniatura..."
+
+#: gexif/gexif-main.c:375
+msgid "_Help"
+msgstr "_Pomoc"
+
+#: gexif/gexif-main.c:376
+msgid "_About..."
+msgstr "_O programie"
+
+#: gexif/gexif-thumbnail.c:184
+msgid "Close"
+msgstr "Za_mknij"

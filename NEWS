@@ -1,5 +1,10 @@
-TBD:
-  * New translation: sv
+New in 0.5.0cvs3:
 
-New in 0.5.0cvs2:
-  * Misc. (build) bug fixes.
+ * code made compatible for both gtk2 (minimum version: 2.6) and gtk3
+ * added --with-gtk3 option in configure.ac (default is gtk2)
+ * fixed bug 2014281: gexif doesn't build with latest GTK 2.13.2
+ * converted source files (.c .h) to utf-8 encoding (fix crashes for invalid encoding)
+ * warning message "No EXIF data found!" replaced by message dialog box
+ * warning message "Implement!" replaced by 'about' dialog box
+ * de, es, fr, pl, sv translations completed
+ * fixed bug 1599611: gexif is not localized (remark: no change of AM_GNU_GETTEXT)

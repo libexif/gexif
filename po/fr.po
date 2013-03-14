@@ -1,24 +1,81 @@
-# GEXIF PO FILE
-# Copyright © 2003 Free Software Foundation, Inc.
-# This file is distributed under the same license as the GEXIF package.
+# French translation for gexif.
+# This file is distributed under the same license as the gexif package.
 # Arnaud Launay <asl@launay.org>, 2002.
+# Valère Monseur <valere.monseur@ymail.com>, 2011.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gexif 0.5\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-05-17 17:23+0200\n"
+"Project-Id-Version: gexif 0.6\n"
+"Report-Msgid-Bugs-To: libexif-devel@lists.sourceforge.net\n"
+"POT-Creation-Date: 2011-10-24 18:48+0200\n"
 "PO-Revision-Date: 2003-01-07 19:00+0100\n"
-"Last-Translator: Arnaud Launay <asl@launay.org>\n"
-"Language-Team: Français <traduc@traduc.org>\n"
+"Last-Translator: Valère Monseur <valere.monseur@ymail.com>\n"
+"Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gexif/gexif-main.c:239
-msgid "Save As..."
-msgstr "Sauver sous..."
+#: gexif.desktop.in.h:1
+msgid "gexif"
+msgstr "gexif"
 
-#: gexif/gexif-main.c:270
+#: gexif.desktop.in.h:2
+msgid "gexif is a GUI that shows the EXIF tags contained in JPG and TIFF files"
+msgstr "gexif est une interface graphique qui montre les balises EXIF contenues dans les fichiers JPG et TIFF"
+
+#: gexif/gexif-main.c:176
+msgid "No EXIF data found!"
+msgstr "Aucune donnée EXIF trouvée!"
+
+#: gexif/gexif-main.c:249
+msgid "Save As..."
+msgstr "Enregistrer sous..."
+
+#: gexif/gexif-main.c:280
 msgid "Open..."
 msgstr "Ouvrir..."
+
+#: gexif/gexif-main.c:307
+msgid "gexif is the GTK+ based GUI interface to libexif-gtk"
+msgstr "gexif est l'interface graphique GTK de libexif-gtk"
+
+#: gexif/gexif-main.c:367
+msgid "_File"
+msgstr "_Fichier"
+
+#: gexif/gexif-main.c:368
+msgid "_Open..."
+msgstr "_Ouvrir..."
+
+#: gexif/gexif-main.c:369
+msgid "_Save"
+msgstr "_Enregistrer"
+
+#: gexif/gexif-main.c:370
+msgid "Save _As..."
+msgstr "Enregistrer _sous..."
+
+#: gexif/gexif-main.c:372
+msgid "E_xit"
+msgstr "_Quitter"
+
+#: gexif/gexif-main.c:373
+msgid "_View"
+msgstr "_Affichage"
+
+#: gexif/gexif-main.c:374
+msgid "_Thumbnail..."
+msgstr "_Vignette..."
+
+#: gexif/gexif-main.c:375
+msgid "_Help"
+msgstr "A_ide"
+
+#: gexif/gexif-main.c:376
+msgid "_About..."
+msgstr "A _propos..."
+
+#: gexif/gexif-thumbnail.c:184
+msgid "Close"
+msgstr "Fermer"

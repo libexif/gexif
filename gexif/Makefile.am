@@ -5,9 +5,6 @@ gexif_SOURCES =					\
 	gexif-main.c gexif-main.h		\
 	gexif-thumbnail.c gexif-thumbnail.h
 
-# We cannot define -DGTK_DISABLE_DEPRECATED here
-# as long as we're still using GtkItemFactory.
-
 gexif_CPPFLAGS = \
 	$(AM_CPPFLAGS) $(CPPFLAGS)			\
 	$(LIBEXIF_CFLAGS)				\

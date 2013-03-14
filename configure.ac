@@ -1,5 +1,5 @@
 AC_PREREQ(2.59)
-AC_INIT([GTK EXIF viewer/editor],[0.5.0cvs2],[libexif-devel@lists.sourceforge.net],[gexif])
+AC_INIT([GTK EXIF viewer/editor],[0.5.0cvs3],[libexif-devel@lists.sourceforge.net],[gexif])
 AC_CONFIG_SRCDIR([gexif/gexif.c])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIR([auto-m4])
@@ -46,14 +46,20 @@ GP_GETTEXT_FLAGS()
 
 
 # ---------------------------------------------------------------------------
-# libraries needed
+# conditional libraries
 # ---------------------------------------------------------------------------
-GP_CHECK_LIBRARY([LIBEXIF], [libexif])dnl
-GP_CHECK_LIBRARY([LIBEXIF_GTK], [libexif-gtk],[>= 0.3.3])dnl
+AC_ARG_WITH([gtk3],
+            [AS_HELP_STRING([--with-gtk3],[build with gtk3 (default is gtk2)])],
+            [gtk_version=gtk3],
+            [gtk_version=gtk2])
 
-PKG_CHECK_MODULES([GTK], [gtk+-2.0])dnl
-AC_SUBST([GTK_LIBS])
-AC_SUBST([GTK_CFLAGS])
+if test "x$gtk_version" == "xgtk3" ; then
+  GP_CHECK_LIBRARY([GTK], [gtk+-3.0])dnl
+  GP_CHECK_LIBRARY([LIBEXIF_GTK], [libexif-gtk3],[>= 0.3.3])
+else
+  GP_CHECK_LIBRARY([GTK], [gtk+-2.0], [>= 2.6])dnl
+  GP_CHECK_LIBRARY([LIBEXIF_GTK], [libexif-gtk],[>= 0.3.3])
+fi
 
 
 # ---------------------------------------------------------------------------
