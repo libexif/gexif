@@ -8,3 +8,4 @@ New in 0.5.0cvs3:
  * warning message "Implement!" replaced by 'about' dialog box
  * de, es, fr, pl, sv translations completed
  * fixed bug 1599611: gexif is not localized (remark: no change of AM_GNU_GETTEXT)
+ * fixed bug 712169: fixed text strings in locales that don't use UTF-8

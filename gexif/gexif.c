@@ -20,9 +20,12 @@
 #include "config.h"
 #include "gexif-main.h"
 
+#include <string.h>
 #include <gtk/gtk.h>
 
 #ifdef ENABLE_NLS
+#  include <locale.h>
+#  include <langinfo.h>
 #  include <libintl.h>
 #  undef _
 #  define _(String) dgettext (PACKAGE, String)
@@ -32,6 +35,8 @@
 #    define N_(String) (String)
 #  endif
 #else
+#  define setlocale(Category, Locale)
+#  define nl_langinfo(Item) "UTF-8"
 #  define textdomain(String) (String)
 #  define gettext(String) (String)
 #  define dgettext(Domain,Message) (Message)
@@ -52,6 +57,15 @@ main (int argc, char **argv)
 	textdomain (PACKAGE);
 
 	gtk_init (&argc, &argv);
+
+	/* There is no nice way to force libexif to provide its strings in
+	 * UTF-8, which is what gtk+ expects. If the current locale uses
+	 * some other encoding, try to set UTF-8 using the nonstandard hack
+	 * of using "UTF-8" as a locale name.  If it doesn't work, oh well,
+	 * we tried. This is really a problem that libexif-gtk should solve.
+	 */
+	if (strcmp(nl_langinfo(CODESET), "UTF-8"))
+		setlocale(LC_CTYPE, "UTF-8");
 
 	w = gexif_main_new ();
 
