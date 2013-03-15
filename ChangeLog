@@ -1,4 +1,11 @@
-2013-03-13  Valère Monseur <valere.monseur@ymail.com>
+2013-03-14  Dan Fandrich <dan@coneharvesters.com>
+
+	* Converted remaining files to UTF-8
+	* Minor code cleanups
+	* Updated the FSF address
+	* Make the GPL blurb translatable
+
+2013-03-13  ValÃ¨re Monseur <valere.monseur@ymail.com>
 
 	* code made compatible for both gtk2 (minimum version: 2.6) and gtk3
 	* added --with-gtk3 option in configure.ac (default is gtk2)
@@ -41,24 +48,24 @@
 	* gexif/gexif.c: Use bind_textdomain_codepage.
 
 2003-03-13  Lutz Mueller <lutz@users.sourceforge.net>
-                                                                                
-        * libjpeg/jpeg-data.c: Aravind <aravinds1@users.sourceforge.net>
-          found a bug there.
-                                                                                
-2002-12-11  Lutz Müller <lutz@users.sourceforge.net>
+
+	* libjpeg/jpeg-data.c: Aravind <aravinds1@users.sourceforge.net>
+	  found a bug there.
+
+2002-12-11  Lutz MÃ¼ller <lutz@users.sourceforge.net>
 
 	* gexif/gexif.c: Make warnings fatal.
 
-2002-09-15  Lutz Müller <lutz@users.sourceforge.net>
+2002-09-15  Lutz MÃ¼ller <lutz@users.sourceforge.net>
 
 	* configure.in:
 	* po/es.po: Spanish translation by Fabian Mandelbaum
 	  <fabman@2vias.com.ar>
 
-2002-07-23  Lutz Müller <lutz@users.sourceforge.net>
+2002-07-23  Lutz MÃ¼ller <lutz@users.sourceforge.net>
 
 	* configure.in: Version 0.4
 
-2002-07-23  Lutz Müller <lutz@users.sourceforge.net>
+2002-07-23  Lutz MÃ¼ller <lutz@users.sourceforge.net>
 
 	gtk+-2.0 port.

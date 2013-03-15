@@ -14,8 +14,8 @@
  *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.
+ * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ * Boston, MA 02110-1301, USA.
  */
 
 #ifndef __GEXIF_THUMBNAIL_H__
@@ -31,7 +31,7 @@ typedef struct _GExifThumbnail        GExifThumbnail;
 typedef struct _GExifThumbnailClass   GExifThumbnailClass;
 
 /* use the struct and typedef if you have actually defined some struct members */
-typedef void GExifThumbnailPrivate;
+typedef void* GExifThumbnailPrivate;
 /* typedef struct _GExifThumbnailPrivate GExifThumbnailPrivate; */
 
 struct _GExifThumbnail

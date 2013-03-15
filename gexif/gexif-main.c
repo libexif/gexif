@@ -14,8 +14,8 @@
  *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.
+ * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ * Boston, MA 02110-1301, USA.
  */
 
 #include "config.h"
@@ -229,9 +229,9 @@ action_save (gpointer callback_data, guint callback_action,
 }
 
 static void
-on_save_as_ok_clicked (GtkWidget *fchoser, GExifMain *m)
+on_save_as_ok_clicked (GtkWidget *fchooser, GExifMain *m)
 {
-	gchar *filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (fchoser));
+	gchar *filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (fchooser));
 	gexif_main_save_file (m, filename);
 	g_free(filename);
 }
@@ -241,28 +241,28 @@ action_save_as (gpointer callback_data, guint callback_action,
 		GtkWidget *widget)
 {
 	GExifMain *m = GEXIF_MAIN (callback_data);
-	GtkWidget *fchoser;
-	GtkWidget *fchoser_parent;
+	GtkWidget *fchooser;
+	GtkWidget *fchooser_parent;
 
-	fchoser_parent = gtk_widget_get_ancestor (GTK_WIDGET (m), GTK_TYPE_WINDOW);
-	fchoser = gtk_file_chooser_dialog_new (
+	fchooser_parent = gtk_widget_get_ancestor (GTK_WIDGET (m), GTK_TYPE_WINDOW);
+	fchooser = gtk_file_chooser_dialog_new (
 					_("Save As..."),
-					GTK_WINDOW(fchoser_parent),
+					GTK_WINDOW(fchooser_parent),
 					GTK_FILE_CHOOSER_ACTION_SAVE,
 					GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
 					GTK_STOCK_SAVE, GTK_RESPONSE_ACCEPT,
 					NULL);
 
-	if (gtk_dialog_run (GTK_DIALOG (fchoser)) == GTK_RESPONSE_ACCEPT)
-		on_save_as_ok_clicked (fchoser, m);
+	if (gtk_dialog_run (GTK_DIALOG (fchooser)) == GTK_RESPONSE_ACCEPT)
+		on_save_as_ok_clicked (fchooser, m);
 
-	gtk_widget_destroy (fchoser);
+	gtk_widget_destroy (fchooser);
 }
 
 static void
-on_open_ok_clicked (GtkWidget *fchoser, GExifMain *m)
+on_open_ok_clicked (GtkWidget *fchooser, GExifMain *m)
 {
-	gchar *filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (fchoser));
+	gchar *filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (fchooser));
 	gexif_main_load_file (m, filename);
 	g_free(filename);
 }
@@ -272,22 +272,22 @@ action_open (gpointer callback_data, guint callback_action,
 	     GtkWidget *widget)
 {
 	GExifMain *m = GEXIF_MAIN (callback_data);
-	GtkWidget *fchoser;
-	GtkWidget *fchoser_parent;
+	GtkWidget *fchooser;
+	GtkWidget *fchooser_parent;
 
-	fchoser_parent = gtk_widget_get_ancestor (GTK_WIDGET (m), GTK_TYPE_WINDOW);
-	fchoser = gtk_file_chooser_dialog_new (
+	fchooser_parent = gtk_widget_get_ancestor (GTK_WIDGET (m), GTK_TYPE_WINDOW);
+	fchooser = gtk_file_chooser_dialog_new (
 					_("Open..."),
-					GTK_WINDOW(fchoser_parent),
+					GTK_WINDOW(fchooser_parent),
 					GTK_FILE_CHOOSER_ACTION_OPEN,
 					GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
 					GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
 					NULL);
 
-	if (gtk_dialog_run (GTK_DIALOG (fchoser)) == GTK_RESPONSE_ACCEPT)
-		on_open_ok_clicked (fchoser, m);
+	if (gtk_dialog_run (GTK_DIALOG (fchooser)) == GTK_RESPONSE_ACCEPT)
+		on_open_ok_clicked (fchooser, m);
 
-	gtk_widget_destroy (fchoser);
+	gtk_widget_destroy (fchooser);
 }
 
 static void
@@ -303,13 +303,13 @@ action_about (gpointer callback_data, guint callback_action,
 
 	GtkWidget* dialog = gtk_about_dialog_new ();
 	gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (m));
-	gtk_about_dialog_set_copyright (GTK_ABOUT_DIALOG (dialog), "Copyright © 2001 Lutz Müller");
+	gtk_about_dialog_set_copyright (GTK_ABOUT_DIALOG (dialog), "Copyright © 2001-2013 Lutz Müller, et. al.");
 	gtk_about_dialog_set_comments (GTK_ABOUT_DIALOG (dialog), _("gexif is the GTK+ based GUI interface to libexif-gtk"));
 	gtk_about_dialog_set_website (GTK_ABOUT_DIALOG (dialog), "http://libexif.sourceforge.net/");
 	gtk_about_dialog_set_website_label (GTK_ABOUT_DIALOG (dialog), "http://libexif.sourceforge.net/");
 	gtk_about_dialog_set_authors (GTK_ABOUT_DIALOG (dialog), authors);
 	gtk_about_dialog_set_license (GTK_ABOUT_DIALOG (dialog),
-		"Copyright © 2001 Lutz Müller <lutz@users.sourceforge.net>\n\n"
+	       _("Copyright © 2001-2013 Lutz Müller <lutz@users.sourceforge.net>, et. al.\n\n"
 		"This library is free software; you can redistribute it and/or\n"
 		"modify it under the terms of the GNU Lesser General Public\n"
 		"License as published by the Free Software Foundation; either\n"
@@ -320,8 +320,8 @@ action_about (gpointer callback_data, guint callback_action,
 		"Lesser General Public License for more details.\n\n"
 		"You should have received a copy of the GNU Lesser General Public\n"
 		"License along with this library; if not, write to the\n"
-		"Free Software Foundation, Inc., 59 Temple Place - Suite 330,\n"
-		"Boston, MA 02111-1307, USA.\n");
+		"Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,\n"
+		"Boston, MA  02110-1301  USA.\n"));
 
 	gtk_dialog_run (GTK_DIALOG (dialog));
 	gtk_widget_destroy (dialog);
@@ -361,7 +361,7 @@ gexif_main_create_menu (GExifMain *m)
 		gint type;
 		gchar mnemonic[32];
 		gchar accelerator[32];
-		gchar *image;
+		const gchar *image;
 		void (*callback)(gpointer, guint, GtkWidget*);
 	} info[10] = {
 	{ 0, N_("_File"        ), ""          , NULL             , NULL             },
@@ -398,18 +398,17 @@ gexif_main_create_menu (GExifMain *m)
 					menuitem = gtk_image_menu_item_new_with_mnemonic (
 														_(info[i].mnemonic));
 					menuimage = gtk_image_new_from_stock (info[i].image,
-													GTK_ICON_SIZE_MENU);
+									      GTK_ICON_SIZE_MENU);
 					gtk_image_menu_item_set_image (
-								GTK_IMAGE_MENU_ITEM (menuitem), menuimage);
+						GTK_IMAGE_MENU_ITEM (menuitem), menuimage);
 				} else
-					menuitem = gtk_menu_item_new_with_mnemonic (
-													_(info[i].mnemonic));
+					menuitem = gtk_menu_item_new_with_mnemonic (_(info[i].mnemonic));
 
 				gtk_menu_shell_append (GTK_MENU_SHELL (menu), menuitem);
 				gtk_widget_show (menuitem);
 
 				gtk_accelerator_parse (info[i].accelerator,
-								&accelerator_key, &accelerator_mods);
+						       &accelerator_key, &accelerator_mods);
 
 				if (accelerator_key && accelerator_mods)
 					gtk_widget_add_accelerator(menuitem, "activate", ag,
@@ -417,7 +416,7 @@ gexif_main_create_menu (GExifMain *m)
 
 				if (info[i].callback)
 					g_signal_connect_swapped (G_OBJECT(menuitem), "activate",
-										G_CALLBACK(info[i].callback), m);
+								  G_CALLBACK(info[i].callback), m);
 				break;
 
 			case 2:
