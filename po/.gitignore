@@ -2,7 +2,6 @@ ChangeLog
 *.gmo
 gexif*.pot
 Makevars
-Makevars.template
 Makefile
 Makefile.in
 Makefile.in.in

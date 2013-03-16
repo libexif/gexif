@@ -36,7 +36,7 @@ GP_PKG_CONFIG
 # ---------------------------------------------------------------------------
 # i18n support
 # ---------------------------------------------------------------------------
-GP_GETTEXT_HACK([],[Lutz Müller and others])
+GP_GETTEXT_HACK([],[Lutz Mueller and others])
 ALL_LINGUAS="de es fr pl sv"
 AM_GNU_GETTEXT_VERSION([0.14.1])
 AM_GNU_GETTEXT([external])
