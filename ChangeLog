@@ -2,6 +2,7 @@
 
 	* Fixed .po file generation due to use of UTF-8 in original
 	  messages
+	* Clarify that gexif is a program, not a library
 
 2013-03-15  Dan Fandrich <dan@coneharvesters.com>
 
