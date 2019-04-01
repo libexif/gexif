@@ -7,6 +7,7 @@ WHAT IT IS
 gexif is a GUI application which shows the EXIF tags contained in JPG
 and TIFF files.
 
+
 BUILDING
 ========
 
@@ -18,6 +19,8 @@ Building from the source tar ball usually involves the commands:
   sudo make install
 
 When building from source out of git, please run "autoreconf -i" first.
+If xgettext complains about non-ASCII strings in code, make sure
+po/Makevars.template wasn't overwritten.
 
 
 NOTE TO PACKAGERS

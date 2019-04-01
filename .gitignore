@@ -39,3 +39,11 @@ config.h.in
 aclocal.m4
 Makefile
 Makefile.in
+INSTALL
+compile
+config.guess
+config.sub
+depcomp
+install-sh
+ltmain.sh
+missing

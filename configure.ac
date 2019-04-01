@@ -4,6 +4,7 @@ AC_CONFIG_SRCDIR([gexif/gexif.c])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIR([auto-m4])
 AM_INIT_AUTOMAKE([gnu 1.8 dist-bzip2])
+AM_SILENT_RULES([yes])
 
 GP_CHECK_SHELL_ENVIRONMENT
 GP_CONFIG_MSG([Build])
@@ -25,9 +26,9 @@ GP_GETTEXT_HACK([],[Lutz Mueller and others])
 ALL_LINGUAS="de es fr pl sv"
 AM_GNU_GETTEXT_VERSION([0.14.1])
 AM_GNU_GETTEXT([external])
-AM_PO_SUBDIRS()
-AM_ICONV()
-GP_GETTEXT_FLAGS()
+AM_PO_SUBDIRS
+AM_ICONV
+GP_GETTEXT_FLAGS
 
 
 # ---------------------------------------------------------------------------
@@ -69,6 +70,6 @@ AC_CONFIG_FILES([
   libjpeg/Makefile
   gexif/Makefile
 ])
-AC_OUTPUT()dnl
+AC_OUTPUT
 
-GP_CONFIG_OUTPUT()dnl
+GP_CONFIG_OUTPUT
