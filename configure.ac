@@ -16,7 +16,6 @@ AC_HEADER_STDC
 AM_PROG_LIBTOOL
 AM_CPPFLAGS="$CPPFLAGS -I\$(top_srcdir)"
 AM_PROG_CC_C_O
-GP_PKG_CONFIG
 
 
 # ---------------------------------------------------------------------------
@@ -39,6 +38,7 @@ AC_ARG_WITH([gtk3],
             [gtk_version=gtk3],
             [gtk_version=gtk2])
 
+GP_CHECK_LIBRARY([LIBEXIF], [libexif])
 if test "x$gtk_version" == "xgtk3" ; then
   GP_CHECK_LIBRARY([GTK], [gtk+-3.0])dnl
   GP_CHECK_LIBRARY([LIBEXIF_GTK], [libexif-gtk3],[>= 0.3.3])
