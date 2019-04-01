@@ -1,4 +1,4 @@
-New in 0.5.0cvs3:
+New in 0.5.0git3:
 
  * code made compatible for both gtk2 (minimum version: 2.6) and gtk3
  * added --with-gtk3 option in configure.ac (default is gtk2)

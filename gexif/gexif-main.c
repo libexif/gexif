@@ -305,8 +305,8 @@ action_about (gpointer callback_data, guint callback_action,
 	gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (m));
 	gtk_about_dialog_set_copyright (GTK_ABOUT_DIALOG (dialog), "Copyright © 2001-2013 Lutz Müller, et. al.");
 	gtk_about_dialog_set_comments (GTK_ABOUT_DIALOG (dialog), _("gexif is the GTK+ based GUI interface to libexif-gtk"));
-	gtk_about_dialog_set_website (GTK_ABOUT_DIALOG (dialog), "http://libexif.sourceforge.net/");
-	gtk_about_dialog_set_website_label (GTK_ABOUT_DIALOG (dialog), "http://libexif.sourceforge.net/");
+	gtk_about_dialog_set_website (GTK_ABOUT_DIALOG (dialog), "https://libexif.github.io/");
+	gtk_about_dialog_set_website_label (GTK_ABOUT_DIALOG (dialog), "https://libexif.github.io/");
 	gtk_about_dialog_set_authors (GTK_ABOUT_DIALOG (dialog), authors);
 	gtk_about_dialog_set_license (GTK_ABOUT_DIALOG (dialog),
 	       _("Copyright © 2001-2013 Lutz Müller <lutz@users.sourceforge.net>, et. al.\n\n"

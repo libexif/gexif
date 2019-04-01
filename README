@@ -17,7 +17,7 @@ Building from the source tar ball usually involves the commands:
   make
   sudo make install
 
-When building from source out of CVS, please run "autoreconf -i" first.
+When building from source out of git, please run "autoreconf -i" first.
 
 
 NOTE TO PACKAGERS
@@ -30,4 +30,4 @@ The configure option --with-gtk3 allows building gexif with gtk3.
 LINKS
 =====
 
-gexif is a part of the libexif project at http://libexif.sourceforge.net/
+gexif is a part of the libexif project at https://libexif.github.io/
