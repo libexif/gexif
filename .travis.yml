@@ -6,7 +6,8 @@ language: c
 sudo: false
 
 git:
-  depth: 1
+  # Set to 10 instead of 1 to avoid problems when the most recent commits have [skip ci]
+  depth: 10
 
 # Install needed packages on Ubuntu & OS X
 addons:
@@ -17,6 +18,8 @@ addons:
   homebrew:
     packages:
       - gtk+
+    # The default OS X image is now (April 2020) too old to work without this
+    update: true
 
 env:
   # More configurations are configured in the matrix section
@@ -36,56 +39,123 @@ os:
 
 matrix:
   include:
-  - env: CONFIG=clang6
+  - env: CONFIG=clang6 DIST=xenial
     os: linux
+    dist: xenial
     compiler: clang
     addons:
       apt:
-        sources:
-          - llvm-toolchain-trusty-6.0
-          - ubuntu-toolchain-r-test
         packages:
           - autopoint
           - clang-6.0
           - libgtk2.0-dev
-  - env: CONFIG=clang7
+  - env: CONFIG=clang8 DIST=xenial
     os: linux
+    dist: xenial
     compiler: clang
     addons:
       apt:
         sources:
-          - llvm-toolchain-trusty-7
-          - ubuntu-toolchain-r-test
+          - llvm-toolchain-trusty-8
         packages:
           - autopoint
-          - clang-7
+          - clang-8
           - libgtk2.0-dev
-  - env: CONFIG=gcc8
+  - env: CONFIG=clang9 DIST=xenial
     os: linux
+    dist: xenial
+    compiler: clang
+    addons:
+      apt:
+        sources:
+          sourceline:
+            - deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-9 main
+          key_url:
+            - https://apt.llvm.org/llvm-snapshot.gpg.key
+        packages:
+          - autopoint
+          - clang-9
+          - libgtk2.0-dev
+  - env: CONFIG=clang10 DIST=xenial
+    os: linux
+    dist: xenial
+    compiler: clang
+    addons:
+      apt:
+        sources:
+          sourceline:
+            - deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-10 main
+          key_url:
+            - https://apt.llvm.org/llvm-snapshot.gpg.key
+        packages:
+          - autopoint
+          - clang-10
+          - libgtk2.0-dev
+  - env: CONFIG=gcc8 DIST=xenial
+    os: linux
+    dist: xenial
     compiler: gcc
     addons:
       apt:
         sources:
-          - ubuntu-toolchain-r-test
+          sourceline:
+            - ppa:ubuntu-toolchain-r/test
         packages:
           - autopoint
           - g++-8
           - libgtk2.0-dev
-  - env: CONFIG=gtk3
+  - env: CONFIG=gcc9 DIST=xenial
     os: linux
+    dist: xenial
+    compiler: gcc
+    addons:
+      apt:
+        sources:
+          sourceline:
+            - ppa:ubuntu-toolchain-r/test
+        packages:
+          - autopoint
+          - g++-9
+          - libgtk2.0-dev
+  - env: CONFIG=gtk3 DIST=xenial
+    os: linux
+    dist: xenial
     compiler: gcc
     addons:
       apt:
         packages:
           - autopoint
           - libgtk-3-dev
-  - env: CONFIG=gtk3
+  - env: CONFIG=gtk3 DIST=xenial
     os: linux
+    dist: xenial
     compiler: clang
     addons:
       apt:
         packages:
           - autopoint
+          - libgtk-3-dev
+  - env: CONFIG=gtk3 DIST=bionic
+    arch: arm64
+    os: linux
+    dist: bionic
+    compiler: clang
+    addons:
+      apt:
+        packages:
+          - autopoint
+          - gettext
+          - libgtk-3-dev
+  - env: CONFIG=gtk3 DIST=bionic
+    arch: ppc64le
+    os: linux
+    dist: bionic
+    compiler: clang
+    addons:
+      apt:
+        packages:
+          - autopoint
+          - gettext
           - libgtk-3-dev
   - env: CONFIG=gtk3
     os: osx
@@ -94,6 +164,8 @@ matrix:
       homebrew:
         packages:
           - gtk+3
+        # The default OS X image is now (April 2020) too old to work without this
+        update: true
   - env: CONFIG=gtk3
     os: osx
     compiler: clang
@@ -101,6 +173,12 @@ matrix:
       homebrew:
         packages:
           - gtk+3
+        # The default OS X image is now (April 2020) too old to work without this
+        update: true
+
+before_install:
+  # The apt addons section is ignored on bionic for some reason
+  - if [ "$DIST" = "bionic" ] ; then sudo apt-get install -y autopoint gettext libgtk-3-dev; fi
 
 install:
   # Install the latest libexif source code
@@ -140,8 +218,11 @@ script:
   - if [ "$CONFIG" = "normal" ] ; then CFLAGS='-Wall -Wextra -O3'; fi
   - if [ "$CONFIG" = "c90" ] ; then CFLAGS='-std=iso9899:1990 -D_XOPEN_SOURCE=500 -Wall -Wextra -O3'; fi
   - if [ "$CONFIG" = "clang6" ] ; then CFLAGS='-Wall -Wextra -O3'; export CC=clang-6.0; fi
-  - if [ "$CONFIG" = "clang7" ] ; then CFLAGS='-Wall -Wextra -O3'; export CC=clang-7; fi
+  - if [ "$CONFIG" = "clang8" ] ; then CFLAGS='-Wall -Wextra -O3'; export CC=clang-8; fi
+  - if [ "$CONFIG" = "clang9" ] ; then CFLAGS='-Wall -Wextra -O3'; export CC=clang-9; fi
+  - if [ "$CONFIG" = "clang10" ] ; then CFLAGS='-Wall -Wextra -O3'; export CC=clang-10; fi
   - if [ "$CONFIG" = "gcc8" ] ; then CFLAGS='-Wall -Wextra -O3'; export export CC=gcc-8; fi
+  - if [ "$CONFIG" = "gcc9" ] ; then CFLAGS='-Wall -Wextra -O3'; export export CC=gcc-9; fi
   - if [ "$CONFIG" = "gtk3" ] ; then CFLAGS='-Wall -Wextra -O3'; CONFIGURE_OPTS='--with-gtk3'; fi
 
   # Build libexif
