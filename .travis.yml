@@ -135,6 +135,24 @@ matrix:
         packages:
           - autopoint
           - libgtk-3-dev
+  - env: CONFIG=gtk3 DIST=focal
+    os: linux
+    dist: focal
+    compiler: gcc
+    addons:
+      apt:
+        packages:
+          - autopoint
+          - libgtk-3-dev
+  - env: CONFIG=gtk3 DIST=focal
+    os: linux
+    dist: focal
+    compiler: clang
+    addons:
+      apt:
+        packages:
+          - autopoint
+          - libgtk-3-dev
   - env: CONFIG=gtk3 DIST=bionic
     arch: arm64
     os: linux
