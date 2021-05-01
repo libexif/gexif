@@ -1,11 +1,12 @@
-AC_PREREQ(2.59)
+AC_PREREQ(2.69)
 AC_INIT([GTK EXIF viewer/editor],[0.5.0git3],[libexif-devel@lists.sourceforge.net],[gexif])
 AC_CONFIG_SRCDIR([gexif/gexif.c])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIR([auto-m4])
 AM_INIT_AUTOMAKE([
   gnu
-  1.8
+  1.14.1
+  dist-xz
   dist-bzip2
 ])
 AM_SILENT_RULES([yes])
@@ -17,9 +18,8 @@ GP_CONFIG_MSG([Source code location],[${srcdir}])
 AC_PROG_CC
 AM_PROG_CC_STDC
 AC_HEADER_STDC
-AM_PROG_LIBTOOL
+LT_INIT([win32-dll])
 AM_CPPFLAGS="$CPPFLAGS -I\$(top_srcdir)"
-AM_PROG_CC_C_O
 
 
 # ---------------------------------------------------------------------------
