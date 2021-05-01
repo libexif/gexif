@@ -48,22 +48,22 @@ AC_ARG_WITH([gtk3],
             [gtk_version=gtk2])
 
 GP_CHECK_LIBRARY([LIBEXIF], [libexif])
-if test "x$gtk_version" == "xgtk3" ; then
+AS_VAR_IF([gtk_version], [gtk3], [dnl
   GP_CHECK_LIBRARY([GTK], [gtk+-3.0])dnl
   GP_CHECK_LIBRARY([LIBEXIF_GTK], [libexif-gtk3],[>= 0.3.3])
-else
+], [dnl
   GP_CHECK_LIBRARY([GTK], [gtk+-2.0], [>= 2.6])dnl
   GP_CHECK_LIBRARY([LIBEXIF_GTK], [libexif-gtk],[>= 0.3.3])
-fi
+])
 
 
 # ---------------------------------------------------------------------------
 # Warnings: If we have GCC, be paranoid.
 # ---------------------------------------------------------------------------
-if test "x$GCC" = "xyes"; then
+AS_VAR_IF([GCC], [yes], [dnl
     AM_CPPFLAGS="$AM_CPPFLAGS -Wall -Wchar-subscripts -Wmissing-declarations -Wmissing-prototypes -Wnested-externs -Wpointer-arith"
     AM_LDFLAGS="$AM_LDFLAGS -g -Wall"
-fi
+])
 
 AC_SUBST([AM_CPPFLAGS])dnl
 AC_SUBST([AM_LDFLAGS])dnl
