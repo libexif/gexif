@@ -2,7 +2,8 @@ AC_PREREQ(2.69)
 AC_INIT([GTK EXIF viewer/editor],
         [0.5.0git3],
         [libexif-devel@lists.sourceforge.net],
-        [gexif])
+        [gexif],
+        [https://libexif.github.io/])
 AC_CONFIG_SRCDIR([gexif/gexif.c])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIR([auto-m4])
