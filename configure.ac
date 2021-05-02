@@ -27,11 +27,12 @@ AM_CPPFLAGS="$CPPFLAGS -I\$(top_srcdir)"
 # ---------------------------------------------------------------------------
 GP_GETTEXT_HACK([],[Lutz Mueller and others])
 ALL_LINGUAS="de es fr pl sv"
-AM_GNU_GETTEXT_VERSION([0.14.1])
+AM_PO_SUBDIRS()
+AM_GNU_GETTEXT_VERSION([0.18.3])
 AM_GNU_GETTEXT([external])
-AM_PO_SUBDIRS
-AM_ICONV
-GP_GETTEXT_FLAGS
+AM_XGETTEXT_OPTION([--from-code=UTF-8])dnl macro since gettext 0.17
+AM_ICONV()
+GP_GETTEXT_FLAGS()
 
 
 # ---------------------------------------------------------------------------
