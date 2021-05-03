@@ -17,7 +17,7 @@ AM_SILENT_RULES([yes])
 
 GP_CHECK_SHELL_ENVIRONMENT
 GP_CONFIG_MSG([Build])
-GP_CONFIG_MSG([Source code location],[${srcdir}])
+GP_CONFIG_MSG([Source code location], [${srcdir}])
 
 AC_PROG_CC
 AM_PROG_CC_STDC
@@ -29,7 +29,7 @@ AM_CPPFLAGS="$CPPFLAGS -I\$(top_srcdir)"
 # ---------------------------------------------------------------------------
 # i18n support
 # ---------------------------------------------------------------------------
-GP_GETTEXT_HACK([],[Lutz Mueller and others])
+GP_GETTEXT_HACK([], [Lutz Mueller and others])
 ALL_LINGUAS="de es fr pl sv"
 AM_PO_SUBDIRS()
 AM_GNU_GETTEXT_VERSION([0.18.3])
