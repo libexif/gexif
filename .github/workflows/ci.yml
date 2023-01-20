@@ -1,0 +1,54 @@
+# Github Actions configuration
+name: CI
+
+permissions: {}
+
+on:
+  # Trigger the workflow on push or pull requests, but only for the
+  # master and ci branches
+  push:
+    branches:
+      - master
+      - ci
+  pull_request:
+    branches:
+      - master
+
+env:
+  MAKEFLAGS: -j 2
+
+jobs:
+  build-22_04:
+    runs-on: ubuntu-22.04
+    strategy:
+      fail-fast: false
+      matrix:
+        build:
+        - cc: gcc
+          configure:
+          install: libtool autoconf automake autopoint pkg-config libexif-gtk-dev gettext
+          # TODO: fix code to remove -Wno-error=unused-parameter
+          cflags: -Wall -Wextra -Werror -Wno-error=deprecated-declarations -Wno-error=unused-parameter -O3
+        - cc: clang
+          configure:
+          install: clang libtool autoconf automake autopoint pkg-config libexif-gtk-dev gettext
+          cflags: -Wall -Wextra -Werror -Wno-error=deprecated-declarations -Wno-error=unused-parameter -O3
+        - cc: gcc
+          configure: --with-gtk3
+          install: libtool autoconf automake autopoint pkg-config libexif-gtk-dev gettext
+          cflags: -Wall -Wextra -Werror -Wno-error=deprecated-declarations -Wno-error=unused-parameter -O3
+        - cc: clang
+          configure: --with-gtk3
+          install: clang libtool autoconf automake autopoint pkg-config libexif-gtk-dev gettext
+          cflags: -Wall -Wextra -Werror -Wno-error=deprecated-declarations -Wno-error=unused-parameter -O3
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: 'install deps'
+      run: sudo apt-get update -y; sudo apt-get install -y --no-install-recommends ${{ matrix.build.install }}
+    - name: 'configure'
+      run: autoreconf -sif && ./configure --prefix="$PWD"/install --disable-dependency-tracking CFLAGS="${{ matrix.build.cflags }}" CC="${{ matrix.build.cc }}" ${{ matrix.build.configure }}
+    - name: 'build'
+      run: make
+    - name: 'install test'
+      run: make install
