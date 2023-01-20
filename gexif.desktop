@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Gexif
+GenericName=EXIF viewing tool
+Comment=View the EXIF metadata inside an image
+Exec=gexif
+TryExec=gexif
+StartupNotify=true
+Terminal=false
+Categories=Graphics;GTK;
+Icon=gexif
+Keywords=exif;jpeg;jpg;picture;photo;
