@@ -9,13 +9,14 @@ on:
   push:
     branches:
       - master
-      - ci
+      - "*/ci"
   pull_request:
     branches:
       - master
 
 env:
   MAKEFLAGS: -j 2
+  LIBEXIF_GTK_VER: 0.5.0
 
 jobs:
   build-22_04:
@@ -45,10 +46,89 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: 'install deps'
-      run: sudo apt-get update -y; sudo apt-get install -y --no-install-recommends ${{ matrix.build.install }}
+      run: sudo apt-get update -y; sudo apt-get install -y --no-install-suggests --no-install-recommends ${{ matrix.build.install }}
     - name: 'configure'
-      run: autoreconf -sif && ./configure --prefix="$PWD"/install --disable-dependency-tracking CFLAGS="${{ matrix.build.cflags }}" CC="${{ matrix.build.cc }}" ${{ matrix.build.configure }}
+      # touch is to disable regeneration of the icons
+      run: autoreconf -sif && ./configure --prefix="$PWD"/install --disable-dependency-tracking CFLAGS="${{ matrix.build.cflags }}" CC="${{ matrix.build.cc }}" ${{ matrix.build.configure }} && touch -d "-1 hour" icons/scalable/gexif.svgz
     - name: 'build'
       run: make
     - name: 'install test'
+      run: make install
+
+  build-20_04:
+    runs-on: ubuntu-20.04
+    strategy:
+      fail-fast: false
+      matrix:
+        build:
+        - cc: gcc
+          configure:
+          install: libtool autoconf automake autopoint pkg-config libexif-gtk-dev gettext
+          cflags: -Wall -Wextra -Werror -Wno-error=deprecated-declarations -Wno-error=unused-parameter -O3
+        - cc: clang
+          configure:
+          install: clang libtool autoconf automake autopoint pkg-config libexif-gtk-dev gettext
+          cflags: -Wall -Wextra -Werror -Wno-error=deprecated-declarations -Wno-error=unused-parameter -O3
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: 'install deps'
+      run: sudo apt-get update -y; sudo apt-get install -y --no-install-suggests  --no-install-recommends ${{ matrix.build.install }}
+    - name: 'configure'
+      run: autoreconf -sif && ./configure --prefix="$PWD"/install --disable-dependency-tracking CFLAGS="${{ matrix.build.cflags }}" CC="${{ matrix.build.cc }}" ${{ matrix.build.configure }} && touch -d "-1 hour" icons/scalable/gexif.svgz
+    - name: 'build'
+      run: make
+    - name: 'install test'
+      run: make install
+
+  build-macosx:
+    runs-on: macos-12
+    env:
+      MAKEFLAGS: -j 3
+    strategy:
+      fail-fast: false
+      matrix:
+        build:
+        - cc: gcc
+          # TODO: get NLS working on macOS
+          configure: --disable-nls
+          install: automake gtk+ libexif
+          cflags: -Wall -Wextra -Werror -Wno-error=deprecated-declarations -Wno-error=unused-value -Wno-error=unused-parameter -O3
+        - cc: clang
+          configure: --disable-nls
+          install: automake gtk+ libexif
+          cflags: -Wall -Wextra -Werror -Wno-error=deprecated-declarations -Wno-error=unused-value -Wno-error=unused-parameter -O3
+        - cc: gcc
+          configure: --with-gtk3 --disable-nls
+          install: automake gtk+3 libexif
+          cflags: -Wall -Wextra -Werror -Wno-error=deprecated-declarations -Wno-error=unused-value -Wno-error=unused-parameter -O3
+        - cc: clang
+          configure: --with-gtk3 --disable-nls
+          install: automake gtk+3 libexif
+          cflags: -Wall -Wextra -Werror -Wno-error=deprecated-declarations -Wno-error=unused-value -Wno-error=unused-parameter -O3
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: 'install deps'
+      run: >
+        brew update &&
+        brew install ${{ matrix.build.install }} &&
+        curl -LOsSf --retry 6 --retry-connrefused --max-time 999 https://github.com/libexif/libexif-gtk/releases/download/v${LIBEXIF_GTK_VER}/libexif-gtk-${LIBEXIF_GTK_VER}.tar.xz
+    - name: 'build deps'
+      # config.h macro patch should be removed on the next libexif-gtk release
+      run: >
+        xzcat libexif-gtk-${LIBEXIF_GTK_VER}.tar.xz | tar -xf - &&
+        cd libexif-gtk-${LIBEXIF_GTK_VER} &&
+        ./configure --prefix="$PWD"/../install-root --disable-dependency-tracking CFLAGS="${{ matrix.build.cflags }}" CC="${{ matrix.build.cc }}" ${{ matrix.build.configure }} &&
+        echo "#define bind_textdomain_codeset(A,B)" >> config.h &&
+        make install
+    - name: 'configure'
+      run: >
+        autoreconf -sif &&
+        ./configure --prefix="$PWD"/install-root --disable-dependency-tracking CFLAGS="${{ matrix.build.cflags }}" CC="${{ matrix.build.cc }}"  PKG_CONFIG_PATH=$PWD/install-root/lib/pkgconfig ${{ matrix.build.configure }}
+    - name: 'build'
+      run: make
+    - name: 'test'
+      run: make check
+    - name: 'install'
       run: make install
