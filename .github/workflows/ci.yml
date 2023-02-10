@@ -45,11 +45,13 @@ jobs:
           configure: --disable-nls --with-gtk3
           install: clang libtool autoconf automake autopoint pkg-config libexif-gtk-dev
           cflags: -Wall -Wextra -O3
+          skip_dist: 1
         - cc: gcc
           build_icons: 1
           configure: --with-gtk3
           install: clang libtool autoconf automake autopoint pkg-config libexif-gtk-dev inkscape advancecomp
           cflags: -Wall -Wextra -O3
+          skip_dist: 1
 
     steps:
     - uses: actions/checkout@v3
@@ -67,7 +69,7 @@ jobs:
     - name: 'install'
       run: make install
     - name: 'dist'
-      run: make dist
+      run: test -n "${{ matrix.build.skip_dist }}" || make dist
 
   build-20_04:
     runs-on: ubuntu-20.04
