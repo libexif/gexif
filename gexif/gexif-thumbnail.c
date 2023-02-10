@@ -92,6 +92,8 @@ gexif_thumbnail_finalize (GObject *object)
 static void
 gexif_thumbnail_class_init (gpointer g_class, gpointer class_data)
 {
+	(void)class_data;
+
 #if GTK_CHECK_VERSION(3,0,0)
 	GtkWidgetClass *widget_class;
 	GObjectClass *gobject_class;
@@ -115,6 +117,8 @@ gexif_thumbnail_class_init (gpointer g_class, gpointer class_data)
 static void
 gexif_thumbnail_init (GTypeInstance *instance, gpointer g_class)
 {
+	(void)g_class;
+
 	GExifThumbnail *thumbnail = GEXIF_THUMBNAIL (instance);
 
 	thumbnail->priv = g_new0 (GExifThumbnailPrivate, 1);
@@ -142,6 +146,8 @@ gexif_thumbnail_get_type (void)
 static void
 on_close_clicked (GtkButton *button, GExifThumbnail *thumbnail)
 {
+	(void)button;
+
 #if GTK_CHECK_VERSION(3,0,0)
 	gtk_widget_destroy (GTK_WIDGET (thumbnail));
 #else

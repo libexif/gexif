@@ -104,6 +104,8 @@ gexif_main_finalize (GObject *object)
 static void
 gexif_main_class_init (gpointer g_class, gpointer class_data)
 {
+	(void)class_data;
+
 #if GTK_CHECK_VERSION(3,0,0)
 	GtkWidgetClass *widget_class;
 	GObjectClass *gobject_class;
@@ -127,6 +129,8 @@ gexif_main_class_init (gpointer g_class, gpointer class_data)
 static void
 gexif_main_init (GTypeInstance *instance, gpointer g_class)
 {
+	(void)g_class;
+
 	GExifMain *m = GEXIF_MAIN (instance);
 
 	m->priv = g_new0 (GExifMainPrivate, 1);
@@ -210,6 +214,9 @@ static void
 action_exit (gpointer callback_data, guint callback_action,
 	     GtkWidget *widget)
 {
+	(void)widget;
+	(void)callback_action;
+
 	GExifMain *m = GEXIF_MAIN (callback_data);
 
 #if GTK_CHECK_VERSION(3,0,0)
@@ -223,6 +230,9 @@ static void
 action_save (gpointer callback_data, guint callback_action,
 	     GtkWidget *widget)
 {
+	(void)widget;
+	(void)callback_action;
+
 	GExifMain *m = GEXIF_MAIN (callback_data);
 
 	gexif_main_save_file (m, m->priv->path);
@@ -231,6 +241,8 @@ action_save (gpointer callback_data, guint callback_action,
 static void
 on_save_as_ok_clicked (GtkWidget *fchooser, GExifMain *m)
 {
+	(void)m;
+
 	gchar *filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (fchooser));
 	gexif_main_save_file (m, filename);
 	g_free(filename);
@@ -240,6 +252,9 @@ static void
 action_save_as (gpointer callback_data, guint callback_action,
 		GtkWidget *widget)
 {
+	(void)widget;
+	(void)callback_action;
+
 	GExifMain *m = GEXIF_MAIN (callback_data);
 	GtkWidget *fchooser;
 	GtkWidget *fchooser_parent;
@@ -271,6 +286,9 @@ static void
 action_open (gpointer callback_data, guint callback_action,
 	     GtkWidget *widget)
 {
+	(void)widget;
+	(void)callback_action;
+
 	GExifMain *m = GEXIF_MAIN (callback_data);
 	GtkWidget *fchooser;
 	GtkWidget *fchooser_parent;
@@ -294,6 +312,9 @@ static void
 action_about (gpointer callback_data, guint callback_action,
 	      GtkWidget *widget)
 {
+	(void)widget;
+	(void)callback_action;
+
 	GExifMain *m = GEXIF_MAIN (callback_data);
 
 	const gchar *authors[] = {
@@ -331,6 +352,9 @@ static void
 action_thumbnail (gpointer callback_data, guint callback_action,
 		  GtkWidget *widget)
 {
+	(void)widget;
+	(void)callback_action;
+
 	GExifMain *m = GEXIF_MAIN (callback_data);
 	GtkWidget *dialog;
 	ExifData *edata;
