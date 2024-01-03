@@ -1,0 +1,111 @@
+# Georgian translation for gexif.
+# Copyright (C) 2023 gexif's authors
+# This file is distributed under the same license as the gexif package.
+# Ekaterine Papava <papava.e@gtu.ge>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gexif 0.5.0git3\n"
+"Report-Msgid-Bugs-To: libexif-devel@lists.sourceforge.net\n"
+"POT-Creation-Date: 2024-01-03 10:09+0100\n"
+"PO-Revision-Date: 2024-01-03 10:14+0100\n"
+"Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
+"Language-Team: Georgian <(nothng)>\n"
+"Language: ka\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.3.2\n"
+
+#: gexif/gexif-main.c:180
+msgid "No EXIF data found!"
+msgstr "EXIF მონაცემები ვერ ვიპოვე!"
+
+#: gexif/gexif-main.c:264
+msgid "Save As..."
+msgstr "შენახვა, როგორც..."
+
+#: gexif/gexif-main.c:298
+msgid "Open..."
+msgstr "გახსნა..."
+
+#: gexif/gexif-main.c:328
+msgid "gexif is the GTK+ based GUI interface to libexif-gtk"
+msgstr "gexif GTK+-ზე დაწერილი ინტერფეისია ბიბლიოთეკისთვის libexif-gtk"
+
+#: gexif/gexif-main.c:333
+msgid ""
+"Copyright © 2001-2013 Lutz Müller <lutz@users.sourceforge.net>, et. al.\n"
+"\n"
+"This program is free software; you can redistribute it and/or\n"
+"modify it under the terms of the GNU Lesser General Public\n"
+"License as published by the Free Software Foundation; either\n"
+"version 2 of the License, or (at your option) any later version.\n"
+"\n"
+"This program is distributed in the hope that it will be useful,\n"
+"but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU\n"
+"Lesser General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU Lesser General Public\n"
+"License along with this program; if not, write to the\n"
+"Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,\n"
+"Boston, MA  02110-1301  USA.\n"
+msgstr ""
+"საავტორო უფლებები © 2001-2013 Lutz Müller <lutz@users.sourceforge.net>, და სხვ.\n"
+"\n"
+"This program is free software; you can redistribute it and/or\n"
+"modify it under the terms of the GNU Lesser General Public\n"
+"License as published by the Free Software Foundation; either\n"
+"version 2 of the License, or (at your option) any later version.\n"
+"\n"
+"This program is distributed in the hope that it will be useful,\n"
+"but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU\n"
+"Lesser General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU Lesser General Public\n"
+"License along with this program; if not, write to the\n"
+"Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,\n"
+"Boston, MA  02110-1301  USA.\n"
+
+#: gexif/gexif-main.c:391
+msgid "_File"
+msgstr "_ფაილი"
+
+#: gexif/gexif-main.c:392
+msgid "_Open..."
+msgstr "_გახსნა..."
+
+#: gexif/gexif-main.c:393
+msgid "_Save"
+msgstr "_შენახვა"
+
+#: gexif/gexif-main.c:394
+msgid "Save _As..."
+msgstr "შეინახვა როგორ_ც..."
+
+#: gexif/gexif-main.c:396
+msgid "E_xit"
+msgstr "_გასვლა"
+
+#: gexif/gexif-main.c:397
+msgid "_View"
+msgstr "_ხედი"
+
+#: gexif/gexif-main.c:398
+msgid "_Thumbnail..."
+msgstr "_მინიატურა..."
+
+#: gexif/gexif-main.c:399
+msgid "_Help"
+msgstr "_დახმარება"
+
+#: gexif/gexif-main.c:400
+msgid "_About..."
+msgstr "_შესახებ..."
+
+#: gexif/gexif-thumbnail.c:191
+msgid "Close"
+msgstr "დახურვა"
