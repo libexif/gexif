@@ -65,12 +65,12 @@ jobs:
           sudo apt-get install -y --no-install-suggests --no-install-recommends ${{ matrix.build.install }}
       - name: 'configure'
         env:
-          TOUCH: ${{ ! matrix.build.build_icons || matrix.build.nonexistent }}
+          TOUCH: ${{ ! matrix.build.build_icons || '' }}
         run: |
           autoreconf -sif
           ./configure --prefix="$PWD"/install --disable-dependency-tracking CFLAGS="${{ matrix.build.cflags }}" CC="${{ matrix.build.cc }}" ${{ matrix.build.configure }} || { tail -300 config.log; false; }
           echo touch is "${TOUCH}" arg "${TOUCH:+-d-1hour}"
-          touch "${TOUCH:+-d-1hour}" icons/scalable/gexif.svgz
+          touch ${TOUCH:+-d-1hour} icons/scalable/gexif.svgz
       - name: 'build'
         run: make
       - name: 'install'
