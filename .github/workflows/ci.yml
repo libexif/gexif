@@ -16,7 +16,6 @@ on:
 
 env:
   MAKEFLAGS: -j 3
-  LIBEXIF_GTK_VER: 0.5.0
 
 jobs:
   build-linux:
@@ -26,6 +25,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        os: [ubuntu-26.04, ubuntu-24.04, ubuntu-22.04]
         build:
           - cc: gcc
             configure:
@@ -111,11 +111,11 @@ jobs:
         run: |
           brew update --quiet
           brew install ${{ matrix.build.install }}
-          curl -LOsSf --retry 6 --retry-connrefused --max-time 999 https://github.com/libexif/libexif-gtk/releases/download/v${LIBEXIF_GTK_VER}/libexif-gtk-${LIBEXIF_GTK_VER}.tar.xz
+          git clone --depth=1 https://github.com/libexif/libexif-gtk.git
       - name: 'build deps'
         run: |
-          xzcat libexif-gtk-${LIBEXIF_GTK_VER}.tar.xz | tar -xf -
-          cd libexif-gtk-${LIBEXIF_GTK_VER}
+          cd libexif-gtk
+          autoreconf -sif
           ./configure --prefix="$PWD"/../install-root --disable-dependency-tracking CFLAGS="${{ matrix.build.cflags }}" CC="${{ matrix.build.cc }}" ${{ matrix.build.configure }}
           make install
       - name: 'configure'
