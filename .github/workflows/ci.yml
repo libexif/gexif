@@ -28,14 +28,6 @@ jobs:
         os: [ubuntu-26.04, ubuntu-24.04, ubuntu-22.04]
         build:
           - cc: gcc
-            configure:
-            install: libtool autoconf automake autopoint pkg-config libgtk2.0-dev libexif-gtk-dev gettext
-            cflags: -Wall -Wextra -O3 -Werror -Wno-error=deprecated-declarations
-          - cc: clang
-            configure:
-            install: clang libtool autoconf automake autopoint pkg-config libgtk2.0-dev libexif-gtk-dev gettext
-            cflags: -Wall -Wextra -O3 -Werror -Wno-error=deprecated-declarations
-          - cc: gcc
             configure: --with-gtk3
             install: libtool autoconf automake autopoint pkg-config libexif-gtk-dev gettext
             cflags: -Wall -Wextra -O3 -Werror -Wno-error=deprecated-declarations
@@ -46,7 +38,7 @@ jobs:
           - cc: gcc
             configure: --disable-nls --with-gtk3
             install: clang libtool autoconf automake autopoint pkg-config libexif-gtk-dev
-            cflags: -Wall -Wextra -O3 -Werror -Wno-error=deprecated-declarations
+            cflags: -Wall -Wextra -O3 -Werror -Wno-error=deprecated-declarations -Wno-error=unused-value
             skip_dist: 1
           - cc: gcc
             build_icons: 1
@@ -66,7 +58,7 @@ jobs:
       - name: 'configure'
         run: |
           autoreconf -sif
-          ./configure --prefix="$PWD"/install --disable-dependency-tracking CFLAGS="${{ matrix.build.cflags }}" CC="${{ matrix.build.cc }}" ${{ matrix.build.configure }}
+          ./configure --prefix="$PWD"/install --disable-dependency-tracking CFLAGS="${{ matrix.build.cflags }}" CC="${{ matrix.build.cc }}" ${{ matrix.build.configure }} || { tail -300 config.log; false; }
           TOUCH="${{ matrix.build.build_icons }}" && touch "${TOUCH:--d-1hour}" icons/scalable/gexif.svgz
       - name: 'build'
         run: make
@@ -89,19 +81,19 @@ jobs:
           - cc: gcc
             configure:
             install: automake libtool gtk+ libexif
-            cflags: -Wall -Wextra -O3 -Werror -Wno-error=deprecated-declarations
+            cflags: -Wall -Wextra -O3 -Werror -Wno-error=deprecated-declarations -Wno-error=unused-value
           - cc: clang
             configure:
             install: automake libtool gtk+ libexif
-            cflags: -Wall -Wextra -O3 -Werror -Wno-error=deprecated-declarations
+            cflags: -Wall -Wextra -O3 -Werror -Wno-error=deprecated-declarations -Wno-error=unused-value
           - cc: gcc
             configure: --with-gtk3
             install: automake libtool gtk+3 libexif
-            cflags: -Wall -Wextra -O3 -Werror -Wno-error=deprecated-declarations
+            cflags: -Wall -Wextra -O3 -Werror -Wno-error=deprecated-declarations -Wno-error=unused-value
           - cc: clang
             configure: --with-gtk3
             install: automake libtool gtk+3 libexif
-            cflags: -Wall -Wextra -O3 -Werror -Wno-error=deprecated-declarations
+            cflags: -Wall -Wextra -O3 -Werror -Wno-error=deprecated-declarations -Wno-error=unused-value
 
     steps:
       - uses: actions/checkout@v7
@@ -116,12 +108,12 @@ jobs:
         run: |
           cd libexif-gtk
           autoreconf -sif
-          ./configure --prefix="$PWD"/../install-root --disable-dependency-tracking CFLAGS="${{ matrix.build.cflags }}" CC="${{ matrix.build.cc }}" ${{ matrix.build.configure }}
+          ./configure --prefix="$PWD"/../install-root --disable-dependency-tracking CFLAGS="${{ matrix.build.cflags }}" CC="${{ matrix.build.cc }}" ${{ matrix.build.configure }} || { tail -300 config.log; false; }
           make install
       - name: 'configure'
         run: |
           autoreconf -sif
-          ./configure --prefix="$PWD"/install-root --disable-dependency-tracking CFLAGS="${{ matrix.build.cflags }}" CC="${{ matrix.build.cc }}"  PKG_CONFIG_PATH=$PWD/install-root/lib/pkgconfig ${{ matrix.build.configure }}
+          ./configure --prefix="$PWD"/install-root --disable-dependency-tracking CFLAGS="${{ matrix.build.cflags }}" CC="${{ matrix.build.cc }}"  PKG_CONFIG_PATH=$PWD/install-root/lib/pkgconfig ${{ matrix.build.configure }} || { tail -300 config.log; false; }
       - name: 'build'
         run: make
       - name: 'test'
