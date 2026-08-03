@@ -15,142 +15,120 @@ on:
       - master
 
 env:
-  MAKEFLAGS: -j 2
-  LIBEXIF_GTK_VER: 0.5.0
+  MAKEFLAGS: -j 3
 
 jobs:
-  build-22_04:
-    runs-on: ubuntu-22.04
+  build-linux:
+    name: ${{ matrix.os }} ${{ matrix.build.cc }} ${{ matrix.build.configure }} ${{ matrix.build.build_icons && 'icons' }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 5
     strategy:
       fail-fast: false
       matrix:
+        os: [ubuntu-26.04, ubuntu-24.04, ubuntu-22.04]
         build:
-        - cc: gcc
-          configure:
-          install: libtool autoconf automake autopoint pkg-config libexif-gtk-dev gettext
-          cflags: -Wall -Wextra -O3
-        - cc: clang
-          configure:
-          install: clang libtool autoconf automake autopoint pkg-config libexif-gtk-dev gettext
-          cflags: -Wall -Wextra -O3
-        - cc: gcc
-          configure: --with-gtk3
-          install: libtool autoconf automake autopoint pkg-config libexif-gtk-dev gettext
-          cflags: -Wall -Wextra -O3
-        - cc: clang
-          configure: --with-gtk3
-          install: clang libtool autoconf automake autopoint pkg-config libexif-gtk-dev gettext
-          cflags: -Wall -Wextra -O3
-        - cc: gcc
-          configure: --disable-nls --with-gtk3
-          install: clang libtool autoconf automake autopoint pkg-config libexif-gtk-dev
-          cflags: -Wall -Wextra -O3
-          skip_dist: 1
-        - cc: gcc
-          build_icons: 1
-          configure: --with-gtk3
-          install: clang libtool autoconf automake autopoint pkg-config libexif-gtk-dev inkscape advancecomp
-          cflags: -Wall -Wextra -O3
-          skip_dist: 1
+          - cc: gcc
+            configure: --with-gtk3
+            install: libtool autoconf automake autopoint pkg-config libexif-gtk-dev gettext
+            cflags: -Wall -Wextra -O3 -Werror -Wno-error=deprecated-declarations
+          - cc: clang
+            configure: --with-gtk3
+            install: clang libtool autoconf automake autopoint pkg-config libexif-gtk-dev gettext
+            cflags: -Wall -Wextra -O3 -Werror -Wno-error=deprecated-declarations
+          - cc: gcc
+            configure: --disable-nls --with-gtk3
+            install: clang libtool autoconf automake autopoint pkg-config libexif-gtk-dev
+            cflags: -Wall -Wextra -O3 -Werror -Wno-error=deprecated-declarations -Wno-error=unused-value
+            skip_dist: 1
+          - cc: gcc
+            build_icons: 1
+            configure: --with-gtk3
+            install: clang libtool autoconf automake autopoint pkg-config libexif-gtk-dev inkscape advancecomp
+            cflags: -Wall -Wextra -O3
+            skip_dist: 1
+        exclude:
+          # Run icon build in only 24.04 to avoid Inkscape crashes in 26.04
+          - os: ubuntu-26.04
+            build:
+              build_icons: 1
+          - os: ubuntu-22.04
+            build:
+              build_icons: 1
 
     steps:
-    - uses: actions/checkout@v3
-    - name: 'install deps'
-      run: |
-        sudo apt-get update -y
-        sudo apt-get install -y --no-install-suggests --no-install-recommends ${{ matrix.build.install }}
-    - name: 'configure'
-      run: |
-        autoreconf -sif
-        ./configure --prefix="$PWD"/install --disable-dependency-tracking CFLAGS="${{ matrix.build.cflags }}" CC="${{ matrix.build.cc }}" ${{ matrix.build.configure }}
-        TOUCH="${{ matrix.build.build_icons }}" && touch "${TOUCH:--d-1hour}" icons/scalable/gexif.svgz
-    - name: 'build'
-      run: make
-    - name: 'install'
-      run: make install
-    - name: 'dist'
-      run: test -n "${{ matrix.build.skip_dist }}" || make dist
-
-  build-20_04:
-    runs-on: ubuntu-20.04
-    strategy:
-      fail-fast: false
-      matrix:
-        build:
-        - cc: gcc
-          configure:
-          install: libtool autoconf automake autopoint pkg-config libexif-gtk-dev gettext
-          cflags: -Wall -Wextra -Werror -Wno-error=deprecated-declarations -O3
-        - cc: clang
-          configure:
-          install: clang libtool autoconf automake autopoint pkg-config libexif-gtk-dev gettext
-          cflags: -Wall -Wextra -Werror -Wno-error=deprecated-declarations -O3
-
-    steps:
-    - uses: actions/checkout@v3
-    - name: 'install deps'
-      run: |
-        sudo apt-get update -y
-        sudo apt-get install -y --no-install-suggests  --no-install-recommends ${{ matrix.build.install }}
-    - name: 'configure'
-      run: |
-        autoreconf -sif
-        ./configure --prefix="$PWD"/install --disable-dependency-tracking CFLAGS="${{ matrix.build.cflags }}" CC="${{ matrix.build.cc }}" ${{ matrix.build.configure }}
-        touch -d "-1 hour" icons/scalable/gexif.svgz
-    - name: 'build'
-      run: make
-    - name: 'install'
-      run: make install
-    - name: 'dist'
-      run: make dist
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: 'install deps'
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y --no-install-suggests --no-install-recommends ${{ matrix.build.install }}
+      - name: 'configure'
+        env:
+          TOUCHOLD: ${{ ! matrix.build.build_icons || '' }}
+        run: |
+          autoreconf -sif
+          ./configure --prefix="$PWD"/install --disable-dependency-tracking CFLAGS="${{ matrix.build.cflags }}" CC="${{ matrix.build.cc }}" ${{ matrix.build.configure }} || { tail -300 config.log; false; }
+          touch ${TOUCHOLD:+-d-1hour} icons/scalable/gexif.svgz
+      - name: 'build'
+        run: make
+      - name: 'install'
+        run: make install
+      - name: 'dist'
+        run: test -n "${{ matrix.build.skip_dist }}" || make dist
 
   build-macosx:
-    runs-on: macos-12
+    name: ${{ matrix.os }} ${{ matrix.build.cc }} ${{ matrix.build.configure }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 5
     env:
       MAKEFLAGS: -j 3
     strategy:
       fail-fast: false
       matrix:
+        os: [macos-26, macos-15, macos-14]
         build:
-        - cc: gcc
-          configure:
-          install: automake gtk+ libexif
-          cflags: -Wall -Wextra -O3
-        - cc: clang
-          configure:
-          install: automake gtk+ libexif
-          cflags: -Wall -Wextra -O3
-        - cc: gcc
-          configure: --with-gtk3
-          install: automake gtk+3 libexif
-          cflags: -Wall -Wextra -O3
-        - cc: clang
-          configure: --with-gtk3
-          install: automake gtk+3 libexif
-          cflags: -Wall -Wextra -O3
+          - cc: gcc
+            configure:
+            install: automake libtool gtk+ libexif
+            cflags: -Wall -Wextra -O3 -Werror -Wno-error=deprecated-declarations -Wno-error=unused-value
+          - cc: clang
+            configure:
+            install: automake libtool gtk+ libexif
+            cflags: -Wall -Wextra -O3 -Werror -Wno-error=deprecated-declarations -Wno-error=unused-value
+          - cc: gcc
+            configure: --with-gtk3
+            install: automake libtool gtk+3 libexif
+            cflags: -Wall -Wextra -O3 -Werror -Wno-error=deprecated-declarations -Wno-error=unused-value
+          - cc: clang
+            configure: --with-gtk3
+            install: automake libtool gtk+3 libexif
+            cflags: -Wall -Wextra -O3 -Werror -Wno-error=deprecated-declarations -Wno-error=unused-value
 
     steps:
-    - uses: actions/checkout@v3
-    - name: 'install deps'
-      run: |
-        brew update --quiet
-        brew install ${{ matrix.build.install }}
-        curl -LOsSf --retry 6 --retry-connrefused --max-time 999 https://github.com/libexif/libexif-gtk/releases/download/v${LIBEXIF_GTK_VER}/libexif-gtk-${LIBEXIF_GTK_VER}.tar.xz
-    - name: 'build deps'
-      run: |
-        xzcat libexif-gtk-${LIBEXIF_GTK_VER}.tar.xz | tar -xf -
-        cd libexif-gtk-${LIBEXIF_GTK_VER}
-        ./configure --prefix="$PWD"/../install-root --disable-dependency-tracking CFLAGS="${{ matrix.build.cflags }}" CC="${{ matrix.build.cc }}" ${{ matrix.build.configure }}
-        make install
-    - name: 'configure'
-      run: |
-        autoreconf -sif
-        ./configure --prefix="$PWD"/install-root --disable-dependency-tracking CFLAGS="${{ matrix.build.cflags }}" CC="${{ matrix.build.cc }}"  PKG_CONFIG_PATH=$PWD/install-root/lib/pkgconfig ${{ matrix.build.configure }}
-    - name: 'build'
-      run: make
-    - name: 'test'
-      run: make check
-    - name: 'install'
-      run: make install
-    - name: 'dist'
-      run: make dist
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: 'install deps'
+        run: |
+          brew update --quiet
+          brew install ${{ matrix.build.install }}
+          git clone --depth=1 https://github.com/libexif/libexif-gtk.git
+      - name: 'build deps'
+        run: |
+          cd libexif-gtk
+          autoreconf -sif
+          ./configure --prefix="$PWD"/../install-root --disable-dependency-tracking CFLAGS="${{ matrix.build.cflags }}" CC="${{ matrix.build.cc }}" ${{ matrix.build.configure }} || { tail -300 config.log; false; }
+          make install
+      - name: 'configure'
+        run: |
+          autoreconf -sif
+          ./configure --prefix="$PWD"/install-root --disable-dependency-tracking CFLAGS="${{ matrix.build.cflags }}" CC="${{ matrix.build.cc }}"  PKG_CONFIG_PATH=$PWD/install-root/lib/pkgconfig ${{ matrix.build.configure }} || { tail -300 config.log; false; }
+      - name: 'build'
+        run: make
+      - name: 'test'
+        run: make check
+      - name: 'install'
+        run: make install
+      - name: 'dist'
+        run: make dist
