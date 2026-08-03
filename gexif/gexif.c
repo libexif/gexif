@@ -64,8 +64,9 @@ main (int argc, char **argv)
 	 * of using "UTF-8" as a locale name.  If it doesn't work, oh well,
 	 * we tried. This is really a problem that libexif-gtk should solve.
 	 */
-	if (strcmp(nl_langinfo(CODESET), "UTF-8"))
+	if (strcmp(nl_langinfo(CODESET), "UTF-8")) {
 		setlocale(LC_CTYPE, "UTF-8");
+	}
 
 	w = gexif_main_new ();
 
