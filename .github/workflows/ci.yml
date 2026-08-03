@@ -47,8 +47,8 @@ jobs:
             cflags: -Wall -Wextra -O3
             skip_dist: 1
         exclude:
-          # Run icon build in only one release to avoid Inkscape crashes in others
-          - os: ubuntu-24.04
+          # Run icon build in only 24.04 to avoid Inkscape crashes in 26.04
+          - os: ubuntu-26.04
             build:
               build_icons: 1
           - os: ubuntu-22.04
