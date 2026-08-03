@@ -19,7 +19,7 @@ env:
 
 jobs:
   build-linux:
-    name: ${{ matrix.os }} ${{ matrix.build.cc }} ${{ matrix.build.configure }}
+    name: ${{ matrix.os }} ${{ matrix.build.cc }} ${{ matrix.build.configure }} ${{ matrix.build.build_icons && 'icons' }}
     runs-on: ${{ matrix.os }}
     timeout-minutes: 5
     strategy:
@@ -29,11 +29,11 @@ jobs:
         build:
           - cc: gcc
             configure:
-            install: libtool autoconf automake autopoint pkg-config libexif-gtk-dev gettext
+            install: libtool autoconf automake autopoint pkg-config libgtk2.0-dev libexif-gtk-dev gettext
             cflags: -Wall -Wextra -O3 -Werror -Wno-error=deprecated-declarations
           - cc: clang
             configure:
-            install: clang libtool autoconf automake autopoint pkg-config libexif-gtk-dev gettext
+            install: clang libtool autoconf automake autopoint pkg-config libgtk2.0-dev libexif-gtk-dev gettext
             cflags: -Wall -Wextra -O3 -Werror -Wno-error=deprecated-declarations
           - cc: gcc
             configure: --with-gtk3
@@ -88,19 +88,19 @@ jobs:
         build:
           - cc: gcc
             configure:
-            install: automake gtk+ libexif
+            install: automake libtool gtk+ libexif
             cflags: -Wall -Wextra -O3 -Werror -Wno-error=deprecated-declarations
           - cc: clang
             configure:
-            install: automake gtk+ libexif
+            install: automake libtool gtk+ libexif
             cflags: -Wall -Wextra -O3 -Werror -Wno-error=deprecated-declarations
           - cc: gcc
             configure: --with-gtk3
-            install: automake gtk+3 libexif
+            install: automake libtool gtk+3 libexif
             cflags: -Wall -Wextra -O3 -Werror -Wno-error=deprecated-declarations
           - cc: clang
             configure: --with-gtk3
-            install: automake gtk+3 libexif
+            install: automake libtool gtk+3 libexif
             cflags: -Wall -Wextra -O3 -Werror -Wno-error=deprecated-declarations
 
     steps:
