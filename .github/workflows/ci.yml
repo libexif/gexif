@@ -48,10 +48,10 @@ jobs:
             skip_dist: 1
         exclude:
           # Run icon build in only one release to avoid Inkscape crashes in others
-          - osver: ubuntu-24.04
+          - os: ubuntu-24.04
             build:
               build_icons: 1
-          - osver: ubuntu-22.04
+          - os: ubuntu-22.04
             build:
               build_icons: 1
 
